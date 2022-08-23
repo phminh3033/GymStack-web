@@ -1,0 +1,23 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    min-width: 500px;
+}
+
+.nav-item {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    padding: 19px 17px;
+
+    &:hover {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+        cursor: pointer;
+    }
+
+    &.active {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+    }
+}
