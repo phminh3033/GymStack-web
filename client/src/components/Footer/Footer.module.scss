@@ -6,3 +6,66 @@
     overflow: hidden;
     padding: 68px 0 40px;
 }
+
+.heading {
+    margin-bottom: 10px;
+}
+
+.list {
+    a {
+        color: #a9b3bb;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+.bottom {
+    display: flex;
+    margin-top: 48px;
+    align-items: baseline;
+}
+
+.copyright {
+
+}
+
+.social-list {
+    margin-left: auto;
+}
+
+.social-item {
+    font-size: 3.2rem;
+    margin-left: 20px;
+
+    .youtube-icon {
+        color: rgba(235, 44, 59, 1);
+
+        &:hover {
+            color: rgba(235, 44, 59, 0.9);
+        }
+    }
+    .facebook-icon {
+        color: rgba(66, 103, 178, 1);
+
+        &:hover {
+            color: rgba(66, 103, 178, 0.9);
+        }
+    }
+    .ig-icon {
+        color: rgba(205, 72, 107, 1);
+
+        &:hover {
+            color: rgba(205, 72, 107, 0.9);
+        }
+    }
+    .tiktok-icon {
+        color: rgba(255, 255, 255, 1);
+
+        &:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+    }
+        
+}

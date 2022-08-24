@@ -1,4 +1,36 @@
-.container {
+@import '../../gird.module.scss';
+
+.wrapper {
     width: 100%;
     margin-top: var(--header-height);
+    padding: 68px 0 40px;
+}
+
+.row-post {
+    padding-bottom: 80px;
+}
+
+.column.introduce {
+    padding-top: 100px;
+}
+
+
+.heading,
+.title-post {
+    margin-bottom: 12px;
+}
+
+.heading {
+}
+
+.description {
+    font-size: 1.8rem;
+}
+
+.image-post {
+    width: 100%;
+    object-fit: cover;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
 }
