@@ -1,19 +1,25 @@
 @import '../../gird.module.scss';
 
 .wrapper {
+    --footer-text-color: #a9b3bb;
+}
+
+.top {
     background-color: #181821;
-    color: #a9b3bb;
     overflow: hidden;
     padding: 68px 0 40px;
 }
 
 .heading {
+    color: var(--white-color);
     margin-bottom: 10px;
 }
 
 .list {
+    color: var(--footer-text-color);
+
     a {
-        color: #a9b3bb;
+        color: var(--footer-text-color);
 
         &:hover {
             color: #fff;
@@ -21,14 +27,21 @@
     }
 }
 
+.footer-img {
+    margin-top: 30px;
+}
+
 .bottom {
+    background-color: var(--white-color);
+}
+
+.content-bottom {
     display: flex;
-    margin-top: 48px;
-    align-items: baseline;
+    align-items: center;
 }
 
 .copyright {
-
+    color: var(--black-color);
 }
 
 .social-list {
@@ -43,29 +56,36 @@
         color: rgba(235, 44, 59, 1);
 
         &:hover {
-            color: rgba(235, 44, 59, 0.9);
+            color: rgba(235, 44, 59, 0.8);
         }
     }
     .facebook-icon {
         color: rgba(66, 103, 178, 1);
 
         &:hover {
-            color: rgba(66, 103, 178, 0.9);
+            color: rgba(66, 103, 178, 0.8);
         }
     }
     .ig-icon {
         color: rgba(205, 72, 107, 1);
 
         &:hover {
-            color: rgba(205, 72, 107, 0.9);
+            color: rgba(205, 72, 107, 0.8);
         }
     }
     .tiktok-icon {
-        color: rgba(255, 255, 255, 1);
+        color: rgba(0, 0, 0, 1);
 
         &:hover {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(0, 0, 0, 0.8);
         }
     }
         
+}
+
+@media (min-width: 0px) and (max-width: 739px) {
+    .top,
+    .bottom {
+        padding: 48px 16px 40px;
+    }
 }
