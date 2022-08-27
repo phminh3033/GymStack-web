@@ -83,9 +83,12 @@
         
 }
 
-@media (min-width: 0px) and (max-width: 739px) {
+@media (max-width: 739px) {
+    .column {
+        margin-bottom: 28px;
+    }
     .top,
     .bottom {
-        padding: 48px 16px 40px;
+        padding: 40px 32px 28px;
     }
 }
