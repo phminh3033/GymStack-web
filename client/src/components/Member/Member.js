@@ -5,7 +5,6 @@ import styles from './Member.module.scss';
 import { Link } from 'react-router-dom';
 
 //Component
-import images from '../../assets/images';
 import AvaCard from '../../components/AvaCard/AvaCard';
 
 const cx = classNames.bind(styles);

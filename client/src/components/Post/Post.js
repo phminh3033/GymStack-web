@@ -4,6 +4,13 @@ import styles from './Post.module.scss';
 //React library
 import { Link } from 'react-router-dom';
 
+//React hooks
+import { useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../../redux/actions/postActions';
+import { postsState$ } from '../../redux/selectors';
+
 //Component
 import images from '../../assets/images';
 import Card from '../../components/Card/Card';
@@ -62,6 +69,15 @@ const postDatas = [
 ];
 
 export default function Post() {
+    const dispatch = useDispatch();
+    const posts = useSelector(postsState$);
+
+    console.log('[Post - posts]', posts);
+
+    useEffect(() => {
+        dispatch(actions.getPosts.getPostsRequest());
+    }, [dispatch]);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('grid', 'wide')}>
