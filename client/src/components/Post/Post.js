@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'; //Allows to write class names with '-' => Ex: post-item
 import styles from './Post.module.scss';
+import moment from 'moment';
 
 //React library
 import { Link } from 'react-router-dom';
@@ -9,7 +10,6 @@ import { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../redux/actions/postActions';
-import { postsState$ } from '../../redux/selectors';
 
 //Component
 import images from '../../assets/images';
@@ -70,12 +70,12 @@ const postDatas = [
 
 export default function Post() {
     const dispatch = useDispatch();
-    const posts = useSelector(postsState$);
+    const posts = useSelector((state) => state.posts);
 
     console.log('[Post - posts]', posts);
 
     useEffect(() => {
-        dispatch(actions.getPosts.getPostsRequest());
+        dispatch(actions.getPosts());
     }, [dispatch]);
 
     return (
@@ -88,13 +88,23 @@ export default function Post() {
                     </Link>
                 </div>
                 <div className={cx('row')}>
-                    {postDatas.map((postData, index) => (
+                    {/* {postDatas.map((postData, index) => (
                         <div key={index} className={cx('col', 'l-3', 'm-6', 'c-12')}>
                             <Card
                                 src={postData.img}
                                 title={postData.title}
                                 desc={postData.desc}
                                 createAt={postData.createAt}
+                            />
+                        </div>
+                    ))} */}
+                    {posts.map((postData) => (
+                        <div key={postData._id} className={cx('col', 'l-3', 'm-6', 'c-12')}>
+                            <Card
+                                src={postData.img}
+                                title={postData.title}
+                                desc={postData.desc}
+                                createAt={moment(postData.createAt).format('DD MM YYYY')}
                             />
                         </div>
                     ))}

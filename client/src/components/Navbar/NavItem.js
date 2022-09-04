@@ -8,18 +8,21 @@ import { NavLink } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function NavItem({ title, to }) {
-    return ( 
-        <NavLink className={(nav) => cx('nav-item', {active: nav.isActive})} to={to}>
+function NavItem({ title, to, icon, activeIcon }) {
+    return (
+        <NavLink className={(nav) => cx('nav-item', { active: nav.isActive })} to={to}>
+            <span className={cx('icon')}>{icon}</span>
+            <span className={cx('active-icon')}>{activeIcon}</span>
             <span className={cx('nav-title')}>{title}</span>
         </NavLink>
-     );
+    );
 }
 
 NavItem.propTypes = {
     title: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,
+    // icon: PropTypes.node.isRequired,
+    // activeIcon: PropTypes.node.isRequired,
 };
 
 export default NavItem;
-

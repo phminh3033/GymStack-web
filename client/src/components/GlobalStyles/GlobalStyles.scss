@@ -1,10 +1,17 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;500;600;700&display=swap');
+@import "~bootstrap/scss/bootstrap";
 
 :root {
+    //client
     --primary-color: #b71c1c;
     --primary-opacity-color: rgba(183, 28, 28, 0.8);
     --secondary-color: rgba(255, 235, 238, 1);
+
+    //admin
+    --primary-color-admin: #3a57e8;
+    --secondary-color-admin: #e7ebfc;
+    
     --white-color: #fff;
     --grey-color: #424242;
     --black-color: #000;
@@ -12,6 +19,10 @@
     --font-family: 'Saira Condensed', sans-serif;
 
     --header-height: 65px;
+    //admin
+    --sidebar-width: 240px;
+    --header-height-admin: 264px;
+
 }
 
 * {

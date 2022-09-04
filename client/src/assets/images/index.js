@@ -10,6 +10,9 @@ const images = {
     thumb1: require('../../assets/images/thumb1.jpg'),
     thumb2: require('../../assets/images/thumb2.jpg'),
     ava1: require('../../assets/images/ava1.jpg'),
+
+    //admin
+    header_admin: require('../../assets/images/header_admin.png'),
 };
 
 export default images;

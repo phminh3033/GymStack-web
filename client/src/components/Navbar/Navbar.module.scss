@@ -21,3 +21,49 @@
         background-color: var(--secondary-color);
     }
 }
+
+//sidebar
+.navbar.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-width: 100%;
+    padding: 1px 10px;
+
+    .nav-item {
+        display: flex;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #6c757d;
+        padding: 8px 16px;
+        margin: 2px 0;
+        align-items: center;
+
+        letter-spacing: 2px;
+
+        border-radius: 4px;
+
+        transition: all .4s ease;
+
+        .icon {
+            margin-top: 6px;
+        }
+
+        .nav-title {
+            padding-left: 10px;
+        }
+    
+        &:hover {
+            color: var(--primary-color-admin);
+            background-color: var(--secondary-color-admin);
+            cursor: pointer;
+        }
+    
+        &.active {
+            color: var(--white-color);
+            background-color: var(--primary-color-admin);
+            box-shadow: 0 10px 20px -10px rgb(58 87 232 / 40%);
+        }
+    }
+}

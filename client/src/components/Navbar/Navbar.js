@@ -5,10 +5,8 @@ import styles from './Navbar.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Navbar({ children }) {
-    return ( 
-        <nav className={cx('navbar')}>{children}</nav>
-     );
+function Navbar({ children, className }) {
+    return <nav className={cx('navbar', className)}>{children}</nav>;
 }
 
 Navbar.propTypes = {
@@ -16,4 +14,3 @@ Navbar.propTypes = {
 };
 
 export default Navbar;
-

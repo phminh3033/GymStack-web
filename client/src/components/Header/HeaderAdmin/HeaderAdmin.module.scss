@@ -1,0 +1,105 @@
+.wrapper {
+    position: relative;
+    margin-left: var(--sidebar-width);
+}
+
+.inner {
+    width: 100%;
+    height: var(--header-height-admin);
+    overflow: hidden;
+    border-radius: 1rem;
+    transform-origin: center left;
+    
+    transition: all 0.4s;
+
+    img {
+        object-fit: cover;
+    }
+
+    .banner {
+        
+        height: 100%;
+        width: 100%;
+        animation: animScale 45s alternate ease-in-out 1s infinite;
+        @keyframes animScale {
+            from {
+                transform: scaleX(1);
+            }
+            to{
+                transform: scaleX(1.5);
+            }
+        }
+    }
+}
+
+.info {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    .admin-info {
+        display: flex;
+    
+        .admin-ava {
+            padding: 10px;
+            border: 1px solid var(--white-color);
+            border-radius: 50%;
+        }
+    
+        .admin-details {
+            min-width: 300px;
+            padding: 15px;
+            margin-left: 20px;
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--white-color);
+            background: linear-gradient(117.76deg,hsla(0,0%,100%,.5) -7.21%,hsla(0,0%,100%,.01) 118.08%);
+            border: 1px solid #fff;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+        }
+    }
+
+    .statistical {
+        display: flex;
+
+        .detail {
+            margin-left: 16px;
+        }
+
+        .people-statistical {
+            .student,
+            .trainer {
+                display: flex;
+                min-width: 200px;
+                padding: 8px 15px;
+                margin: 8px;
+                color: var(--primary-color-admin);
+                background: var(--white-color);
+                border: 1px solid #fff;
+                border-radius: 5px;
+            }
+            
+        }
+
+        .revenue-statistical {
+            display: flex;
+            min-width: 200px;
+            padding: 8px 15px;
+            margin: 8px 0;
+            align-items: center;
+            color: var(--primary-color-admin);
+            background: var(--white-color);
+            border: 1px solid #fff;
+            border-radius: 5px;
+        }
+    }
+}
+
+
+

@@ -8,18 +8,13 @@ import GlobalStyles from './components/GlobalStyles/GlobalStyles.js';
 
 //Middleware
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 
 import reducers from './redux/reducers';
-import mySaga from './redux/sagas';
 
-// create the saga middleware
-const sagaMiddleware = createSagaMiddleware();
 // mount it on the Store
-const store = createStore(reducers, applyMiddleware(sagaMiddleware));
-// then run the saga
-sagaMiddleware.run(mySaga);
+const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,11 +1,10 @@
-import { createActions } from 'redux-actions';
+import * as api from '../../api';
 
-export const getType = (reduxAction) => {
-    return reduxAction.type;
+export const getPosts = () => async (dispatch) => {
+    try {
+        const { data } = await api.fetchPosts();
+        dispatch({ type: 'FETCH_ALL', payload: data });
+    } catch (err) {
+        console.log({ error: err.message });
+    }
 };
-
-export const getPosts = createActions({
-    getPostsRequest: undefined,
-    getPostSuccess: (payload) => payload,
-    getPostError: (err) => err,
-});
