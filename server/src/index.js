@@ -9,14 +9,14 @@ import postRoutes from "./routes/posts.js";
 
 const app = express();
 
-const URI_CONNECT =
-    "mongodb+srv://admin:yhwvrMawwdQQzJWp@cluster0.rkkex.mongodb.net/gymStack?retryWrites=true&w=majority"; //pass yhwvrMawwdQQzJWp
-const PORT = process.env.PORT || 5000;
-
 //Can use middleware
 app.use(bodyParser.json({ extended: true, limit: "30mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
 app.use(cors());
+
+const URI_CONNECT =
+    "mongodb+srv://admin:yhwvrMawwdQQzJWp@cluster0.rkkex.mongodb.net/gymStack?retryWrites=true&w=majority"; //pass yhwvrMawwdQQzJWp
+const PORT = process.env.PORT || 5000;
 
 //HTTP request logger
 app.use(morgan("combined"));

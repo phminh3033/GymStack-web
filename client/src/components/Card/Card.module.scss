@@ -16,7 +16,7 @@
     transition: 0.25s;
 
     .card-header {
-        height: 180px;
+        height: 200px;
         
         .card-img {
             width: 100%;
@@ -26,7 +26,7 @@
     }
     
     .card-body {
-        padding: 15px;
+        padding: 20px 18px;
     
         .title {
             margin: 10px 0 15px;
@@ -41,7 +41,7 @@
             overflow: hidden;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 4;
         }
     }
 

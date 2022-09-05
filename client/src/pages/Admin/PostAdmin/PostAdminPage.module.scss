@@ -1,16 +1,16 @@
 .wrapper {
-    height: 100vh;
     display: flex;
     justify-content: space-between;
 }
 
 .left {
     width: 100%;
-    margin: 24px;
+    margin: 24px 448px 24px 24px;
 
     .addPost-btn {
         background-color: var(--primary-color-admin);
-        font-size: 1.5rem;
+        font-size: 1.6rem;
+        font-weight: 500;
     }
 
     .table-container {
@@ -22,16 +22,31 @@
         .table {
             font-size: 1.8rem;
             margin-bottom: 0;
+
+            .table-btn-wrapper {
+                text-align: center;
+                .table-btn {
+                    color: var(--white-color);
+                    font-weight: 500;
+                    font-size: 1.2rem;
+                    padding: 4px 14px;
+                    margin: 4px 6px;
+                }
+            }
         }
     }
 }
 
+.right {
+    position: fixed;
+    right: 0;
+}
 
 
 .form {
     font-size: 1.8rem;
     font-weight: 600;
-    min-width: 500px;
+    min-width: 400px;
     padding: 24px 28px;
     margin: 24px 24px 24px 0;
     background-color: var(--white-color);
@@ -46,7 +61,7 @@
         font-size: 1.5rem;
     }
 
-    .btn-action {
+    .btn-form {
         text-align: right;
 
         .submit-btn,
@@ -60,6 +75,10 @@
     
 }
 
-.show {
+.pushTable {
+    margin: 24px;
+}
+
+.hide {
     display: none;
 }
