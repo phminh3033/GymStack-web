@@ -1,5 +1,5 @@
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 import classNames from 'classnames/bind';
 import styles from './DefaultLayout.module.scss';
@@ -17,6 +17,5 @@ function DefaultLayout({ children }) {
         </div>
     );
 }
-
 
 export default DefaultLayout;

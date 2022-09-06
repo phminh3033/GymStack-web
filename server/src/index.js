@@ -16,7 +16,7 @@ app.use(cors());
 
 const URI_CONNECT =
     "mongodb+srv://admin:yhwvrMawwdQQzJWp@cluster0.rkkex.mongodb.net/gymStack?retryWrites=true&w=majority"; //pass yhwvrMawwdQQzJWp
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5002;
 
 //HTTP request logger
 app.use(morgan("combined"));

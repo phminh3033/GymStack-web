@@ -8,7 +8,7 @@ export const getPosts = async (req, res) => {
         console.log("Posts", posts);
         res.status(200).json(posts);
     } catch (err) {
-        res.status(404).json({ error: err.message });
+        res.status(404).json({ error: err });
     }
 };
 
@@ -19,31 +19,36 @@ export const createPost = async (req, res) => {
         await newPost.save();
         res.status(201).json(newPost);
     } catch (err) {
-        res.status(409).json({ error: err.message });
+        res.status(409).json({ error: err });
     }
 };
 
 export const updatePost = async (req, res) => {
     const { id: _id } = req.params;
     const post = req.body;
+    const update = {
+        ...post,
+        image: `https://img.youtube.com/vi/${req.body.videoID}/sddefault.jpg`,
+    };
 
-    if (!mongoose.Types.ObjectId.isValid(_id))
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
         return res.status(404).send("No post with that id: " + _id);
+    }
 
-    const updatedPost = await PostsModel.findByIdAndUpdate(_id, post, {
+    const updatedPost = await PostsModel.findByIdAndUpdate(_id, update, {
         new: true,
     });
 
     res.json(updatedPost);
 };
 
-// class PostController {
-//     //[GET] /
-//     show(req, res, next) {
-//         PostsModel.find({})
-//             .then((posts) => res.json(posts))
-//             .catch(next);
-//     }
-// }
+export const deletePost = async (req, res) => {
+    const { id } = req.params;
 
-// export default new PostController();
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).send("No post with that id: " + _id);
+    }
+
+    await PostsModel.findByIdAndRemove(id);
+    res.json({ message: "Post daleted successfully!" });
+};

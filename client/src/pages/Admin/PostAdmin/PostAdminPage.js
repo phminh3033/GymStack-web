@@ -12,7 +12,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 //Actions
-import { createPost, updatePost } from '../../../redux/actions/postActions';
+import { createPost, updatePost, deletePost } from '../../../redux/actions/postActions';
 
 const cx = classNames.bind(styles);
 
@@ -32,31 +32,39 @@ export default function PostAdminPage() {
 
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.posts);
-    // const post = useSelector((state) => (currentID ? state.posts.find((p) => p._id === currentID) : null));
+    const post = useSelector((state) => (currentID ? state.posts.find((p) => p._id === currentID) : null));
 
-    // useEffect(() => {
-    //     if (post) setPostData(post);
-    // }, [post]);
+    useEffect(() => {
+        if (post) setPostData(post);
+    }, [post]);
 
     const handleOpenForm = () => {
-        setHide(!hide);
-        setPutTable(!pushTable);
+        if (!hide && !pushTable) {
+            setHide(hide);
+            setPutTable(pushTable);
+        } else {
+            setHide(!hide);
+            setPutTable(!pushTable);
+        }
     };
 
-    const handleEditForm = () => {
-        setHide(!hide);
-        setPutTable(!pushTable);
-        posts.map((post) => setCurrentID(post._id));
-    };
+    // const handleOpenEditForm = () => {
+    //     if (!hide && !pushTable) {
+    //         setHide(hide);
+    //         setPutTable(pushTable);
+    //     } else {
+    //         setHide(!hide);
+    //         setPutTable(!pushTable);
+    //     }
+    // };
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
-            e.preventDefault();
             e.stopPropagation();
         }
         setValidated(true);
-
         if (currentID) {
             dispatch(updatePost(currentID, postData));
         } else {
@@ -93,10 +101,18 @@ export default function PostAdminPage() {
                                     <td>{post.type}</td>
                                     <td>{moment(post.createdAt).format('DD/MM/YYYY')}</td>
                                     <td className={cx('table-btn-wrapper')}>
-                                        <Button variant="info" className={cx('table-btn')} onClick={handleEditForm}>
+                                        <Button
+                                            variant="info"
+                                            className={cx('table-btn')}
+                                            onClick={() => setCurrentID(post._id)}
+                                        >
                                             Sửa
                                         </Button>
-                                        <Button variant="danger" className={cx('table-btn')}>
+                                        <Button
+                                            variant="danger"
+                                            className={cx('table-btn')}
+                                            onClick={() => dispatch(deletePost(post._id))}
+                                        >
                                             Xóa
                                         </Button>
                                     </td>
@@ -108,7 +124,7 @@ export default function PostAdminPage() {
             </div>
             <div className={cx('right')}>
                 <Form className={cx('form', { hide: hide })} noValidate validated={validated} onSubmit={handleSubmit}>
-                    <h1 className={cx('heading')}>Thêm bài viết hữu ích</h1>
+                    <h1 className={cx('heading')}>{currentID ? 'Sửa' : 'Thêm'} bài viết hữu ích</h1>
                     <Form.Group className="mb-3" controlId="formTitle">
                         <Form.Label>Tiêu đề:</Form.Label>
                         <Form.Control
@@ -161,11 +177,11 @@ export default function PostAdminPage() {
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className={cx('btn-form')}>
-                        <Button variant="success" type="submit" formAction="/admin/posts" className={cx('submit-btn')}>
-                            Thêm
+                        <Button variant="success" type="submit" className={cx('submit-btn')}>
+                            {currentID ? 'Sửa' : 'Thêm'}
                         </Button>
                         <Button variant="danger" className={cx('close-btn')} onClick={handleOpenForm}>
-                            Đóng
+                            {currentID ? 'Hủy' : 'Đóng'}
                         </Button>
                     </Form.Group>
                 </Form>
