@@ -21,7 +21,11 @@ function AdminLayout({ children }) {
     }, [dispatch]);
     return (
         <>
-            <div className={cx('warning')}>Dashboard vẫn chưa hỗ trợ cho màn hình có độ phân giải thấp hơn!</div>
+            <div className={cx('warning')}>
+                <h1 className={cx('warning-content')}>
+                    Dashboard vẫn chưa hỗ trợ cho màn hình có độ phân giải thấp hơn!
+                </h1>
+            </div>
             <div className={cx('wrapper')}>
                 <Sidebar />
                 <HeaderAdmin />

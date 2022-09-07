@@ -7,9 +7,9 @@ import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
-export default function Card({ src, alt, createAt, title, desc }) {
+export default function Card({ src, alt, createAt, title, desc, className }) {
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper', className)}>
             <div className={cx('card')}>
                 <div className={cx('card-header')}>
                     <img className={cx('card-img')} src={src} alt={alt} />

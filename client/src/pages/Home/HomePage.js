@@ -11,8 +11,6 @@ import Parallax from '../../components/Parallax/Parallax';
 const cx = classNames.bind(styles);
 
 export default function HomePage() {
-    // const classes = homePageTheme();
-
     return (
         <>
             <Slider />

@@ -46,6 +46,12 @@ export default function PostAdminPage() {
             setHide(!hide);
             setPutTable(!pushTable);
         }
+        clearInput();
+    };
+
+    const handleCloseForm = () => {
+        setHide(!hide);
+        setPutTable(!pushTable);
     };
 
     // const handleOpenEditForm = () => {
@@ -70,6 +76,17 @@ export default function PostAdminPage() {
         } else {
             dispatch(createPost(postData));
         }
+        clearInput();
+    };
+
+    const clearInput = () => {
+        setCurrentID(null);
+        setPostData({
+            title: '',
+            description: '',
+            videoID: '',
+            type: '',
+        });
     };
 
     return (
@@ -99,12 +116,21 @@ export default function PostAdminPage() {
                                     <td>{post.description}</td>
                                     <td>{post.videoID}</td>
                                     <td>{post.type}</td>
-                                    <td>{moment(post.createdAt).format('DD/MM/YYYY')}</td>
+                                    <td>{moment(post.createdAt).format('hh:mm - DD/MM/YYYY')}</td>
                                     <td className={cx('table-btn-wrapper')}>
                                         <Button
                                             variant="info"
                                             className={cx('table-btn')}
-                                            onClick={() => setCurrentID(post._id)}
+                                            onClick={() => {
+                                                if (!hide && !pushTable) {
+                                                    setHide(hide);
+                                                    setPutTable(pushTable);
+                                                } else {
+                                                    setHide(!hide);
+                                                    setPutTable(!pushTable);
+                                                }
+                                                setCurrentID(post._id);
+                                            }}
                                         >
                                             Sửa
                                         </Button>
@@ -173,6 +199,7 @@ export default function PostAdminPage() {
                         >
                             <option value="">---</option>
                             <option value="knowledge">Kiến thức</option>
+                            <option value="nutrition">Dinh dưỡng</option>
                             <option value="exercise">Bài tập</option>
                         </Form.Select>
                     </Form.Group>
@@ -180,7 +207,7 @@ export default function PostAdminPage() {
                         <Button variant="success" type="submit" className={cx('submit-btn')}>
                             {currentID ? 'Sửa' : 'Thêm'}
                         </Button>
-                        <Button variant="danger" className={cx('close-btn')} onClick={handleOpenForm}>
+                        <Button variant="danger" className={cx('close-btn')} onClick={handleCloseForm}>
                             {currentID ? 'Hủy' : 'Đóng'}
                         </Button>
                     </Form.Group>

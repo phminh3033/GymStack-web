@@ -1,6 +1,8 @@
 .wrapper {
     display: flex;
     justify-content: space-between;
+
+    min-height: calc(100vh - var(--header-height-admin));
 }
 
 .left {
