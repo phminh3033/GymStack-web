@@ -2,12 +2,15 @@ import classNames from 'classnames/bind'; //Allows to write class names with '-'
 import styles from './PostPage.module.scss';
 import moment from 'moment';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+
 //React library
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../../redux/actions/postActions';
-
 //Component
 import Card from '../../components/Card/Card';
 import Navbar from '../../components/Navbar/Navbar';
@@ -15,7 +18,7 @@ import NavItem from '../../components/Navbar/NavItem';
 
 const cx = classNames.bind(styles);
 
-export default function PostPage() {
+export default function KnowledgePost() {
     const posts = useSelector((state) => state.posts);
     const dispatch = useDispatch();
 
@@ -29,6 +32,7 @@ export default function PostPage() {
         exercise: '/posts/exercise',
     };
 
+    const postFilters = posts.filter((post) => post.type === 'knowledge');
     return (
         <>
             <div className={cx('wrapper')}>
@@ -45,17 +49,25 @@ export default function PostPage() {
                         </div>
                         <div className={cx('col', 'l-9', 'm-12', 'c-12')}>
                             <div className={cx('right')}>
-                                <h2 className={cx('heading')}>BÀI VIẾT HỮU ÍCH</h2>
-                                {posts.map((post) => (
+                                <div className={cx('top-heading')}>
+                                    <Link to="/posts" className={cx('heading')}>
+                                        BÀI VIẾT HỮU ÍCH
+                                    </Link>
+                                    <div className={cx('sub-heading')}>
+                                        <FontAwesomeIcon className={cx('icon')} icon={faAngleRight} />
+                                        <span className={cx('content')}>Kiến thức về sức khỏe</span>
+                                    </div>
+                                </div>
+                                {postFilters.map((postFilter) => (
                                     <Card
-                                        key={post._id}
+                                        key={postFilter._id}
                                         className="horizontal-card"
-                                        src={post.image}
-                                        alt={post.title}
-                                        title={post.title}
-                                        desc={post.description}
-                                        type={`#${post.type}`}
-                                        createAt={moment(post.createdAt).format('DD/MM/YYYY')}
+                                        src={postFilter.image}
+                                        alt={postFilter.title}
+                                        title={postFilter.title}
+                                        desc={postFilter.description}
+                                        type={postFilter.type}
+                                        createAt={moment(postFilter.createdAt).format('DD/MM/YYYY')}
                                     />
                                 ))}
                             </div>

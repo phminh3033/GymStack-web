@@ -48,3 +48,10 @@
         cursor: pointer;
     }
 }
+
+@media (min-width: 1024px) and (max-width: 1239px) {
+    .search {
+        width: 225px;
+    }
+}
+

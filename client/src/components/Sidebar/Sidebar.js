@@ -18,7 +18,7 @@ export default function Sidebar() {
         <aside className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <header className={cx('heading')}>
-                    <Link to="/admin" className={cx('logo')}>
+                    <Link to="/admin/dashboard" className={cx('logo')}>
                         <img src={images.logo} alt="GymStack logo" />
                         <h2 className={cx('heading-title')}>Admin Dashboard</h2>
                     </Link>

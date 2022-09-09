@@ -24,9 +24,9 @@
     height: 100%;
 }
 
-.logo {
+.inner-responsive {
+    display: none;
 }
-
 
 .login-btn {
     font-size: 1.8rem;
@@ -40,4 +40,36 @@
     color: var(--primary-color);
 
     }
+}
+
+@media (min-width: 1024px) and (max-width: 1239px) {
+    .inner {
+        width: 984px;
+    }
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .inner {
+        display: none;
+    }
+
+    .inner-responsive {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 32px;
+    }
+
+    .menu-icon {
+        color: var(--white-color);
+        font-size: 2rem;
+
+        &:hover {
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+    }
+
+    
 }

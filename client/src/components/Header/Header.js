@@ -1,6 +1,10 @@
 import classNames from 'classnames/bind'; //Allows to write class names with '-' => Ex: post-item
 import styles from './Header.module.scss';
 
+//FontAwesome Icon
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 //React library
 import { Link } from 'react-router-dom';
 
@@ -33,6 +37,13 @@ export default function Header() {
                 <Link to="/login" className={cx('login-btn')}>
                     ĐĂNG NHẬP
                 </Link>
+            </div>
+            <div className={cx('inner-responsive')}>
+                <Link to="/" className={cx('logo')}>
+                    <img src={images.logo} alt="GymStack logo" />
+                </Link>
+                <Search />
+                <FontAwesomeIcon className={cx('menu-icon')} icon={faBars} />
             </div>
         </header>
     );
