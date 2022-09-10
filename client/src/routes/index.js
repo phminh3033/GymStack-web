@@ -13,6 +13,7 @@ import PostPage from '../pages/Post/PostPage';
 import KnowledgePost from '../pages/Post/KnowledgePost';
 import NutritionPost from '../pages/Post/NutritionPost';
 import ExercisePost from '../pages/Post/ExercisePost';
+// import PostDetail from '../pages/Post/PostDetail/PostDetail';
 
 //Admin pages
 import DashboardPage from '../pages/Admin/Dashboard/DashboardPage';

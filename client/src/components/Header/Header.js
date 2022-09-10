@@ -17,7 +17,7 @@ import NavItem from '../Navbar/NavItem';
 
 const cx = classNames.bind(styles);
 
-export default function Header() {
+export default function Header({ handleOpenMenu }) {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -43,7 +43,9 @@ export default function Header() {
                     <img src={images.logo} alt="GymStack logo" />
                 </Link>
                 <Search />
-                <FontAwesomeIcon className={cx('menu-icon')} icon={faBars} />
+                <div className={cx('mobile-menu')} onClick={handleOpenMenu}>
+                    <FontAwesomeIcon className={cx('menu-icon')} icon={faBars} />
+                </div>
             </div>
         </header>
     );

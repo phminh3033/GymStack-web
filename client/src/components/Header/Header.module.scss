@@ -48,7 +48,7 @@
     }
 }
 
-@media (min-width: 740px) and (max-width: 1023px) {
+@media (min-width: 0px) and (max-width: 1023px) {
     .inner {
         display: none;
     }
@@ -61,15 +61,16 @@
         padding: 0 32px;
     }
 
-    .menu-icon {
-        color: var(--white-color);
-        font-size: 2rem;
-
+    .mobile-menu {
+        padding: 8px 12px;
+        .menu-icon {
+            color: var(--white-color);
+            font-size: 2rem;
+        }
         &:hover {
             cursor: pointer;
             color: var(--secondary-color);
         }
     }
-
-    
 }
+

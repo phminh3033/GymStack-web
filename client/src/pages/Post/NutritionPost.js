@@ -8,9 +8,12 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 //React library
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../../redux/actions/postActions';
+
+//materialUI library
+import CircularProgress from '@mui/material/CircularProgress';
+
 //Component
 import Card from '../../components/Card/Card';
 import Navbar from '../../components/Navbar/Navbar';
@@ -58,18 +61,22 @@ export default function NutritionPost() {
                                         <span className={cx('content')}>Dinh dưỡng / Thực phẩm</span>
                                     </div>
                                 </div>
-                                {postFilters.map((postFilter) => (
-                                    <Card
-                                        key={postFilter._id}
-                                        className="horizontal-card"
-                                        src={postFilter.image}
-                                        alt={postFilter.title}
-                                        title={postFilter.title}
-                                        desc={postFilter.description}
-                                        type={postFilter.type}
-                                        createAt={moment(postFilter.createdAt).format('DD/MM/YYYY')}
-                                    />
-                                ))}
+                                {!posts.length ? (
+                                    <CircularProgress />
+                                ) : (
+                                    postFilters.map((postFilter) => (
+                                        <Card
+                                            key={postFilter._id}
+                                            className="horizontal-card"
+                                            src={postFilter.image}
+                                            alt={postFilter.title}
+                                            title={postFilter.title}
+                                            desc={postFilter.description}
+                                            type={`#${postFilter.type}`}
+                                            createAt={moment(postFilter.createdAt).format('DD/MM/YYYY')}
+                                        />
+                                    ))
+                                )}
                             </div>
                         </div>
                     </div>
