@@ -5,6 +5,11 @@ import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
+import Tippy from '@tippyjs/react/headless'; // different import path!
+
+//MUI library
+import Avatar from '@mui/material/Avatar';
+
 //React library
 import { Link } from 'react-router-dom';
 
@@ -14,10 +19,12 @@ import images from '../../assets/images';
 import Search from '../Search/Search';
 import Navbar from '../Navbar/Navbar';
 import NavItem from '../Navbar/NavItem';
+import UserMenu from '../UserMenu/UserMenu';
 
 const cx = classNames.bind(styles);
 
 export default function Header({ handleOpenMenu }) {
+    const user = false;
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -34,9 +41,27 @@ export default function Header({ handleOpenMenu }) {
 
                 <Search />
 
-                <Link to="/login" className={cx('login-btn')}>
-                    ĐĂNG NHẬP
-                </Link>
+                {user ? (
+                    <div>
+                        <Tippy
+                            interactive
+                            trigger="click"
+                            hideOnClick
+                            placement="bottom-end"
+                            render={(attrs) => (
+                                <div className={cx('user-menu')} tabIndex="-1" {...attrs}>
+                                    <UserMenu />
+                                </div>
+                            )}
+                        >
+                            <Avatar className={cx('avatar')}>T</Avatar>
+                        </Tippy>
+                    </div>
+                ) : (
+                    <Link to="/login" className={cx('login-btn')}>
+                        ĐĂNG NHẬP
+                    </Link>
+                )}
             </div>
             <div className={cx('inner-responsive')}>
                 <Link to="/" className={cx('logo')}>

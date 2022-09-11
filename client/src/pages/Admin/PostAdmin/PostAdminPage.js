@@ -2,6 +2,8 @@ import classNames from 'classnames/bind'; //Allows to write class names with '-'
 import styles from './PostAdminPage.module.scss';
 import moment from 'moment';
 
+import Grow from '@mui/material/Grow';
+
 //react library
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -54,16 +56,6 @@ export default function PostAdminPage() {
         setPutTable(!pushTable);
     };
 
-    // const handleOpenEditForm = () => {
-    //     if (!hide && !pushTable) {
-    //         setHide(hide);
-    //         setPutTable(pushTable);
-    //     } else {
-    //         setHide(!hide);
-    //         setPutTable(!pushTable);
-    //     }
-    // };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -95,58 +87,60 @@ export default function PostAdminPage() {
                 <Button variant="primary" className={cx('addPost-btn')} onClick={handleOpenForm}>
                     Thêm bài viết
                 </Button>
-                <div className={cx('table-container')}>
-                    <Table bordered hover className={cx('table')}>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Tiêu đề</th>
-                                <th>Mô tả</th>
-                                <th>Video ID</th>
-                                <th>Loại</th>
-                                <th>Ngày tạo</th>
-                                <th colSpan={2}></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {posts.map((post) => (
-                                <tr key={post._id}>
-                                    <td>{post._id}</td>
-                                    <td>{post.title}</td>
-                                    <td>{post.description}</td>
-                                    <td>{post.videoID}</td>
-                                    <td>{post.type}</td>
-                                    <td>{moment(post.createdAt).format('hh:mm - DD/MM/YYYY')}</td>
-                                    <td className={cx('table-btn-wrapper')}>
-                                        <Button
-                                            variant="info"
-                                            className={cx('table-btn')}
-                                            onClick={() => {
-                                                if (!hide && !pushTable) {
-                                                    setHide(hide);
-                                                    setPutTable(pushTable);
-                                                } else {
-                                                    setHide(!hide);
-                                                    setPutTable(!pushTable);
-                                                }
-                                                setCurrentID(post._id);
-                                            }}
-                                        >
-                                            Sửa
-                                        </Button>
-                                        <Button
-                                            variant="danger"
-                                            className={cx('table-btn')}
-                                            onClick={() => dispatch(deletePost(post._id))}
-                                        >
-                                            Xóa
-                                        </Button>
-                                    </td>
+                <Grow in>
+                    <div className={cx('table-container')}>
+                        <Table bordered hover className={cx('table')}>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Mô tả</th>
+                                    <th>Video ID</th>
+                                    <th>Loại</th>
+                                    <th>Ngày tạo</th>
+                                    <th colSpan={2}></th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                </div>
+                            </thead>
+                            <tbody>
+                                {posts.map((post) => (
+                                    <tr key={post._id}>
+                                        <td>{post._id}</td>
+                                        <td>{post.title}</td>
+                                        <td>{post.description}</td>
+                                        <td>{post.videoID}</td>
+                                        <td>{post.type}</td>
+                                        <td>{moment(post.createdAt).format('hh:mm - DD/MM/YYYY')}</td>
+                                        <td className={cx('table-btn-wrapper')}>
+                                            <Button
+                                                variant="info"
+                                                className={cx('table-btn')}
+                                                onClick={() => {
+                                                    if (!hide && !pushTable) {
+                                                        setHide(hide);
+                                                        setPutTable(pushTable);
+                                                    } else {
+                                                        setHide(!hide);
+                                                        setPutTable(!pushTable);
+                                                    }
+                                                    setCurrentID(post._id);
+                                                }}
+                                            >
+                                                Sửa
+                                            </Button>
+                                            <Button
+                                                variant="danger"
+                                                className={cx('table-btn')}
+                                                onClick={() => dispatch(deletePost(post._id))}
+                                            >
+                                                Xóa
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </div>
+                </Grow>
             </div>
             <div className={cx('right')}>
                 <Form className={cx('form', { hide: hide })} noValidate validated={validated} onSubmit={handleSubmit}>

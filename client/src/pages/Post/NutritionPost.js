@@ -61,7 +61,7 @@ export default function NutritionPost() {
                                         <span className={cx('content')}>Dinh dưỡng / Thực phẩm</span>
                                     </div>
                                 </div>
-                                {!posts.length ? (
+                                {!postFilters.length ? (
                                     <CircularProgress />
                                 ) : (
                                     postFilters.map((postFilter) => (

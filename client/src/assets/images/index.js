@@ -7,8 +7,6 @@ const images = {
     slider1: require('../../assets/images/slider1.jpg'),
     slider2: require('../../assets/images/slider2.jpg'),
     footer1: require('../../assets/images/footer1.png'),
-    thumb1: require('../../assets/images/thumb1.jpg'),
-    thumb2: require('../../assets/images/thumb2.jpg'),
     ava1: require('../../assets/images/ava1.jpg'),
 
     //admin

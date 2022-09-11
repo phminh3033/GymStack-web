@@ -61,7 +61,7 @@ export default function ExercisePost() {
                                         <span className={cx('content')}>Các bài tập</span>
                                     </div>
                                 </div>
-                                {!posts.length ? (
+                                {!postFilters.length ? (
                                     <CircularProgress />
                                 ) : (
                                     postFilters.map((postFilter) => (

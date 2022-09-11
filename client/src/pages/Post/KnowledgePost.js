@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../../redux/actions/postActions';
 
 //materialUI library
-import CircularProgress from '@mui/material/CircularProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 
 //Component
 import Card from '../../components/Card/Card';
@@ -61,8 +61,8 @@ export default function KnowledgePost() {
                                         <span className={cx('content')}>Kiến thức về sức khỏe</span>
                                     </div>
                                 </div>
-                                {!posts.length ? (
-                                    <CircularProgress />
+                                {!postFilters.length ? (
+                                    <LinearProgress />
                                 ) : (
                                     postFilters.map((postFilter) => (
                                         <Card
