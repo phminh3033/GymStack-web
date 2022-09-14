@@ -56,6 +56,24 @@ body.menuModal {
     padding: 16px 0 0 32px;
 }
 
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+
+    .avatar {
+        height: 96px;
+        width: 96px;
+    }
+
+    .fullName {
+        font-size: 2rem;
+        font-weight: 500;
+        margin: 12px 0 0;
+    }
+}
+
 .list-items {
     margin: 0 0 12px;
     padding: 16px 0;

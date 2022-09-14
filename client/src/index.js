@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 //component
 import GlobalStyles from './components/GlobalStyles/GlobalStyles.js';
 
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 //Middleware
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -20,9 +22,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <GlobalStyles>
-                <App />
-            </GlobalStyles>
+            <GoogleOAuthProvider clientId="318343025712-gl7bfa415vod1s64j8kh6u7e810qcdha.apps.googleusercontent.com">
+                <GlobalStyles>
+                    <App />
+                </GlobalStyles>
+            </GoogleOAuthProvider>
         </Provider>
     </React.StrictMode>,
 );

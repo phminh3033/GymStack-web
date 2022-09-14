@@ -1,21 +1,79 @@
-//React library
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-
 import classNames from 'classnames/bind'; //Allows to write class names with '-' => Ex: post-item
 import styles from './LoginPage.module.scss';
 
+import { Grid } from '@mui/material';
+
+//React library
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { GoogleLogin } from '@react-oauth/google';
+
+import jwt_decode from 'jwt-decode';
+
+//component
+import Input from '../../components/Auth/Input';
+
+//Actions
+import { signUp, signIn } from '../../redux/actions/authActions';
+
 const cx = classNames.bind(styles);
+const initialState = {
+    firstName: '',
+    lastName: '',
+    height: '',
+    weight: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+};
 
 export default function LoginPage() {
     const [showPass, setShowPass] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
+    const [formDataUser, setFormDataUser] = useState(initialState);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const switchMode = () => {
         setIsSignUp((prevIsSignUp) => !prevIsSignUp);
     };
-    const handleShowPassword = () => {};
-    const handleSubmit = () => {};
-    const handleChange = () => {};
+    const handleShowPassword = () => {
+        setShowPass((prevShowPass) => !prevShowPass);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (isSignUp) {
+            dispatch(signUp(formDataUser, navigate));
+        } else {
+            dispatch(signIn(formDataUser, navigate));
+        }
+    };
+    const handleChange = (e) => {
+        setFormDataUser({ ...formDataUser, [e.target.name]: e.target.value });
+    };
+
+    const googleSuccess = async (res) => {
+        console.log(res);
+        console.log(res.credential);
+        console.log(jwt_decode(res.credential));
+
+        const result = jwt_decode(res?.credential);
+        const token = res?.credential;
+
+        try {
+            dispatch({ type: 'AUTH', data: { result, token } });
+            navigate('/');
+        } catch (err) {
+            console.log({ error: err });
+        }
+    };
+    const googleError = (err) => {
+        console.log(err);
+        console.log('Google Sing in was unsuccessful. Please try again later!');
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('grid', 'wide')}>
@@ -30,32 +88,68 @@ export default function LoginPage() {
                                 </div>
                                 <div className={cx('body')}>
                                     <form className={cx('form')} onSubmit={handleSubmit}>
-                                        <div className={cx('form-group')}>
-                                            <label className={cx('form-label')}>Số điện thoại:</label>
-                                            <div className={cx('form-input')}>
-                                                <input
-                                                    name="phone_number"
-                                                    type="tel"
-                                                    placeholder="Số điện thoại"
-                                                    required
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className={cx('form-group')}>
-                                            <label className={cx('form-label')}>Password:</label>
-                                            <div className={cx('form-input')}>
-                                                <input
-                                                    name="password"
-                                                    type="password"
-                                                    placeholder="Password"
-                                                    required
-                                                />
-                                            </div>
-                                        </div>
+                                        <Grid container spacing={2}>
+                                            {isSignUp && (
+                                                <>
+                                                    <Input
+                                                        name="lastName"
+                                                        label="Họ"
+                                                        handleChange={handleChange}
+                                                        autoFocus
+                                                        haft
+                                                    />
+                                                    <Input
+                                                        name="firstName"
+                                                        label="Tên"
+                                                        handleChange={handleChange}
+                                                        haft
+                                                    />
+                                                    <Input
+                                                        name="height"
+                                                        label="Chiều cao (cm)"
+                                                        handleChange={handleChange}
+                                                        type="number"
+                                                        haft
+                                                    />
+                                                    <Input
+                                                        name="weight"
+                                                        label="Cân nặng (kg)"
+                                                        handleChange={handleChange}
+                                                        type="number"
+                                                        haft
+                                                    />
+                                                </>
+                                            )}
+                                            <Input
+                                                name="email"
+                                                label="Email"
+                                                handleChange={handleChange}
+                                                type="email"
+                                            />
+                                            <Input
+                                                name="password"
+                                                label="Password"
+                                                handleChange={handleChange}
+                                                type={showPass ? 'text' : 'password'}
+                                                handleShowPassword={handleShowPassword}
+                                            />
+                                            {isSignUp && (
+                                                <>
+                                                    <Input
+                                                        name="confirmPassword"
+                                                        label="Nhập lại Password"
+                                                        handleChange={handleChange}
+                                                        type={showPass ? 'text' : 'password'}
+                                                        handleShowPassword={handleShowPassword}
+                                                    />
+                                                </>
+                                            )}
+                                        </Grid>
                                         <div className={cx('form-action')}>
-                                            <Link to="/login" className={cx('action-btn')}>
+                                            <button className={cx('action-btn')} variant="contained" type="submit">
                                                 {isSignUp ? 'Đăng ký' : 'Đăng nhập'}
-                                            </Link>
+                                            </button>
+                                            <GoogleLogin onSuccess={googleSuccess} onError={googleError} />
                                             <p className={cx('action-text')}>
                                                 Bạn {isSignUp ? 'đã có' : 'chưa có'} tài khoản?
                                                 <span className={cx('action-tip')} onClick={switchMode}>

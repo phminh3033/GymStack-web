@@ -7,6 +7,8 @@ import mongoose from "mongoose";
 
 //Routes
 import postRoutes from "./routes/posts.js";
+import adminRoutes from "./routes/admins.js";
+import userRoutes from "./routes/users.js";
 
 const app = express();
 dotenv.config();
@@ -25,6 +27,8 @@ app.use(morgan("combined"));
 
 //Routes
 app.use("/posts", postRoutes);
+app.use("/admin", adminRoutes);
+app.use("/user", userRoutes);
 
 //Connect to DB
 mongoose

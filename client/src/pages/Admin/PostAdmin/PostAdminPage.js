@@ -22,7 +22,7 @@ export default function PostAdminPage() {
     const [hide, setHide] = useState(true);
     const [pushTable, setPutTable] = useState(true);
     const [validated, setValidated] = useState(false);
-    const [currentID, setCurrentID] = useState(null);
+    const [currentID, setCurrentID] = useState(0);
 
     //DB
     const [postData, setPostData] = useState({

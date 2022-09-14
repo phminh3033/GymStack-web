@@ -1,30 +1,81 @@
 import classNames from 'classnames/bind';
 import styles from './MobileMenu.module.scss';
 
+import { googleLogout } from '@react-oauth/google';
+
 //React library
-import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 //FontAwesome Icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faBox, faDumbbell, faUsers, faBookmark, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import {
+    faRightToBracket,
+    faUser,
+    faBox,
+    faDumbbell,
+    faUsers,
+    faBookmark,
+    faRightFromBracket,
+} from '@fortawesome/free-solid-svg-icons';
+
+//MUI library
+import Avatar from '@mui/material/Avatar';
 
 const cx = classNames.bind(styles);
 
 export default function MobileMenu({ className, handleCloseMenu }) {
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profileUser')));
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        // const token = user?.token;
+        //JWT...
+        setUser(JSON.parse(localStorage.getItem('profileUser')));
+    }, [location]);
+
+    const handleLogOut = () => {
+        dispatch({ type: 'LOGOUT' });
+        navigate(location);
+        googleLogout();
+        setUser(null);
+    };
+
     return (
         <div className={cx('menuModal', className)} onClick={handleCloseMenu}>
             <div className={cx('menu-body')} onClick={(e) => e.stopPropagation()}>
                 <div className={cx('wrapper')}>
-                    <div className={cx('user')}></div>
+                    {user && (
+                        <div className={cx('user')}>
+                            <Avatar className={cx('avatar')} src={user.result.picture} alt={user.result.name}>
+                                {user.result.name.charAt(0).toUpperCase()}
+                            </Avatar>
+                            <div className={cx('fullName')}>{user?.result.name}</div>
+                        </div>
+                    )}
                     <div className={cx('list')}>
-                        <ul className={cx('list-items')}>
-                            <li>
-                                <NavLink className={(nav) => cx('list-item', { active: nav.isActive })} to="/">
-                                    <FontAwesomeIcon className={cx('menu-icon')} icon={faUser} />
-                                    <span>Trang cá nhân</span>
-                                </NavLink>
-                            </li>
-                        </ul>
+                        {user ? (
+                            <ul className={cx('list-items')}>
+                                <li>
+                                    <NavLink className={(nav) => cx('list-item', { active: nav.isActive })} to="/">
+                                        <FontAwesomeIcon className={cx('menu-icon')} icon={faUser} />
+                                        <span>Trang cá nhân</span>
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        ) : (
+                            <ul className={cx('list-items')}>
+                                <li>
+                                    <NavLink className={(nav) => cx('list-item', { active: nav.isActive })} to="/login">
+                                        <FontAwesomeIcon className={cx('menu-icon')} icon={faRightToBracket} />
+                                        <span>Đăng nhập</span>
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        )}
                         <ul className={cx('list-items')}>
                             <li>
                                 <NavLink
@@ -54,12 +105,14 @@ export default function MobileMenu({ className, handleCloseMenu }) {
                                 </NavLink>
                             </li>
                         </ul>
-                        <ul className={cx('list-items')}>
-                            <NavLink className={cx('list-item')} to="/">
-                                <FontAwesomeIcon className={cx('menu-icon')} icon={faRightFromBracket} />
-                                <span>Đăng xuất</span>
-                            </NavLink>
-                        </ul>
+                        {user && (
+                            <ul className={cx('list-items')}>
+                                <NavLink className={cx('list-item')} to="/">
+                                    <FontAwesomeIcon className={cx('menu-icon')} icon={faRightFromBracket} />
+                                    <span onClick={handleLogOut}>Đăng xuất</span>
+                                </NavLink>
+                            </ul>
+                        )}
                     </div>
                 </div>
             </div>

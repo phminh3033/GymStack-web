@@ -11,7 +11,8 @@ import Tippy from '@tippyjs/react/headless'; // different import path!
 import Avatar from '@mui/material/Avatar';
 
 //React library
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import images from '../../assets/images';
 
@@ -24,7 +25,15 @@ import UserMenu from '../UserMenu/UserMenu';
 const cx = classNames.bind(styles);
 
 export default function Header({ handleOpenMenu }) {
-    const user = false;
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profileUser')));
+    const location = useLocation();
+    console.log(user);
+
+    useEffect(() => {
+        // const token = user?.token;
+        //JWT...
+        setUser(JSON.parse(localStorage.getItem('profileUser')));
+    }, [location]);
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -54,7 +63,9 @@ export default function Header({ handleOpenMenu }) {
                                 </div>
                             )}
                         >
-                            <Avatar className={cx('avatar')}>T</Avatar>
+                            <Avatar className={cx('avatar')} src={user.result.picture} alt={user.result.name}>
+                                {user.result.name.charAt(0).toUpperCase()}
+                            </Avatar>
                         </Tippy>
                     </div>
                 ) : (
