@@ -7,6 +7,7 @@ const postsSchema = mongoose.Schema(
         videoID: { type: String, required: true },
         image: { type: String },
         type: { type: String, required: true },
+        likes: { type: [String], default: [] },
     },
     {
         timestamps: true,

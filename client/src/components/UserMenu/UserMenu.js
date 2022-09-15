@@ -26,7 +26,7 @@ export default function UserMenu() {
     }, [location]);
 
     const handleLogOut = () => {
-        dispatch({ type: 'LOGOUT' });
+        dispatch({ type: 'LOGOUT_USER' });
         navigate(location);
         googleLogout();
         setUser(null);

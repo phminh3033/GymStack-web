@@ -15,7 +15,7 @@ import jwt_decode from 'jwt-decode';
 import Input from '../../components/Auth/Input';
 
 //Actions
-import { signUp, signIn } from '../../redux/actions/authActions';
+import { signUpUser, signInUser } from '../../redux/actions/authUserActions';
 
 const cx = classNames.bind(styles);
 const initialState = {
@@ -45,9 +45,9 @@ export default function LoginPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isSignUp) {
-            dispatch(signUp(formDataUser, navigate));
+            dispatch(signUpUser(formDataUser, navigate));
         } else {
-            dispatch(signIn(formDataUser, navigate));
+            dispatch(signInUser(formDataUser, navigate));
         }
     };
     const handleChange = (e) => {
@@ -63,7 +63,7 @@ export default function LoginPage() {
         const token = res?.credential;
 
         try {
-            dispatch({ type: 'AUTH', data: { result, token } });
+            dispatch({ type: 'AUTH_USER', data: { result, token } });
             navigate('/');
         } catch (err) {
             console.log({ error: err });
@@ -71,7 +71,7 @@ export default function LoginPage() {
     };
     const googleError = (err) => {
         console.log(err);
-        console.log('Google Sing in was unsuccessful. Please try again later!');
+        console.log('Google Sign in was unsuccessful. Please try again later!');
     };
 
     return (

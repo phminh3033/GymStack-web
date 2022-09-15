@@ -3,11 +3,15 @@ import styles from './Card.module.scss';
 
 //FontAwesome Icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightLong, faHeart } from '@fortawesome/free-solid-svg-icons';
+
+import { useDispatch } from 'react-redux';
+import { likePost } from '../../redux/actions/postActions';
 
 const cx = classNames.bind(styles);
 
-export default function Card({ src, alt, type, createAt, title, desc, className }) {
+export default function Card({ src, alt, type, createAt, title, desc, className, idPost, likeCount }) {
+    const dispatch = useDispatch();
     return (
         <div className={cx('wrapper', className)}>
             <div className={cx('card')}>
@@ -21,6 +25,10 @@ export default function Card({ src, alt, type, createAt, title, desc, className 
                     </div>
                     <h2 className={cx('title')}>{title}</h2>
                     <p className={cx('desc')}>{desc}</p>
+                    <button className={cx('like-btn')} onClick={() => dispatch(likePost(idPost))}>
+                        {likeCount}
+                        <FontAwesomeIcon className={cx('like-icon')} icon={faHeart} />
+                    </button>
                 </div>
                 <div className={cx('card-btn')}>
                     Tìm hiểu thêm

@@ -98,6 +98,7 @@ export default function PostAdminPage() {
                                     <th>Video ID</th>
                                     <th>Loại</th>
                                     <th>Ngày tạo</th>
+                                    <th>Lượt thích</th>
                                     <th colSpan={2}></th>
                                 </tr>
                             </thead>
@@ -110,6 +111,7 @@ export default function PostAdminPage() {
                                         <td>{post.videoID}</td>
                                         <td>{post.type}</td>
                                         <td>{moment(post.createdAt).format('hh:mm - DD/MM/YYYY')}</td>
+                                        <td>{post.likeCount}</td>
                                         <td className={cx('table-btn-wrapper')}>
                                             <Button
                                                 variant="info"

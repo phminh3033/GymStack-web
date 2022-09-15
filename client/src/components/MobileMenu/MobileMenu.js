@@ -38,7 +38,7 @@ export default function MobileMenu({ className, handleCloseMenu }) {
     }, [location]);
 
     const handleLogOut = () => {
-        dispatch({ type: 'LOGOUT' });
+        dispatch({ type: 'LOGOUT_USER' });
         navigate(location);
         googleLogout();
         setUser(null);
@@ -107,10 +107,10 @@ export default function MobileMenu({ className, handleCloseMenu }) {
                         </ul>
                         {user && (
                             <ul className={cx('list-items')}>
-                                <NavLink className={cx('list-item')} to="/">
+                                <li className={cx('list-item')}>
                                     <FontAwesomeIcon className={cx('menu-icon')} icon={faRightFromBracket} />
                                     <span onClick={handleLogOut}>Đăng xuất</span>
-                                </NavLink>
+                                </li>
                             </ul>
                         )}
                     </div>
