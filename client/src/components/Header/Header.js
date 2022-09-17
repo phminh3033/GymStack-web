@@ -9,6 +9,7 @@ import Tippy from '@tippyjs/react/headless'; // different import path!
 
 //MUI library
 import Avatar from '@mui/material/Avatar';
+import { green } from '@mui/material/colors';
 
 //React library
 import { useState, useEffect } from 'react';
@@ -63,7 +64,12 @@ export default function Header({ handleOpenMenu }) {
                                 </div>
                             )}
                         >
-                            <Avatar className={cx('avatar')} src={user.result.picture} alt={user.result.name}>
+                            <Avatar
+                                className={cx('avatar')}
+                                src={user.result.picture}
+                                alt={user.result.name}
+                                sx={{ bgcolor: green[600] }}
+                            >
                                 {user.result.name.charAt(0).toUpperCase()}
                             </Avatar>
                         </Tippy>

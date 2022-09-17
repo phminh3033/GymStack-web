@@ -4,10 +4,10 @@ import jwt from "jsonwebtoken";
 import AdminsModel from "../models/AdminsModel.js";
 
 export const signInAdmin = async (req, res) => {
-    const { phone, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-        const existingAdmin = await AdminsModel.findOne({ phone });
+        const existingAdmin = await AdminsModel.findOne({ email });
 
         if (!existingAdmin) {
             return res.status(404).json({ message: "Admin doesn't exist!" });
@@ -23,25 +23,26 @@ export const signInAdmin = async (req, res) => {
         }
 
         const token = jwt.sign(
-            { phone: existingAdmin.phone, id: existingAdmin._id },
-            "secretAdminKey",
+            { email: existingAdmin.email, id: existingAdmin._id },
+            process.env.SECRET_ADMIN_KEY,
             { expiresIn: "1h" }
         );
 
         res.status(200).json({ result: existingAdmin, token });
     } catch (err) {
-        res.status(500).json({ error: err });
-        res.status(500).json({
-            message: "Something went wrong! Please try again",
-        });
+        res.status(500).json({ error: err.message });
+        // res.status(500).json({
+        //     message: "Something went wrong! Please try again",
+        // });
     }
 };
 
 export const signUpAdmin = async (req, res) => {
-    const { phone, password, confirmPassword, firstName, lastName } = req.body;
+    const { email, phone, password, confirmPassword, firstName, lastName } =
+        req.body;
 
     try {
-        const existingAdmin = await AdminsModel.findOne({ phone });
+        const existingAdmin = await AdminsModel.findOne({ email });
 
         if (existingAdmin) {
             return res.status(400).json({ message: "Admin already exists!" });
@@ -54,22 +55,20 @@ export const signUpAdmin = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 12);
 
         const result = await AdminsModel.create({
+            email,
             phone,
             password: hashedPassword,
-            fullName: `${firstName} ${lastName}`,
+            name: `${firstName} ${lastName}`,
         });
 
         const token = jwt.sign(
-            { phone: result.phone, id: result._id },
-            "secretAdminKey",
+            { email: result.email, id: result._id },
+            process.env.SECRET_ADMIN_KEY,
             { expiresIn: "1h" }
         );
 
         res.status(200).json({ result, token });
     } catch (err) {
-        res.status(500).json({ error: err });
-        res.status(500).json({
-            message: "Something went wrong! Please try again",
-        });
+        res.status(500).json({ error: err.message });
     }
 };

@@ -8,7 +8,7 @@ export const signInUser = (formDataUser, navigate) => async (dispatch) => {
         dispatch({ type: AUTH_USER, data });
         navigate('/');
     } catch (err) {
-        console.log({ error: err });
+        console.log({ error: err.message });
     }
 };
 
@@ -19,6 +19,6 @@ export const signUpUser = (formDataUser, navigate) => async (dispatch) => {
         dispatch({ type: AUTH_USER, data });
         navigate('/');
     } catch (err) {
-        console.log({ error: err });
+        console.log({ error: err.message });
     }
 };

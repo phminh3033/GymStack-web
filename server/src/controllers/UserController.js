@@ -24,22 +24,20 @@ export const signInUser = async (req, res) => {
 
         const token = jwt.sign(
             { email: existingUser.email, id: existingUser._id },
-            "secretUserKey",
+            process.env.SECRET_USER_KEY,
             { expiresIn: "1h" }
         );
 
         res.status(200).json({ result: existingUser, token });
     } catch (err) {
-        res.status(500).json({ error: err });
-        res.status(500).json({
-            message: "Something went wrong! Please try again",
-        });
+        res.status(500).json({ error: err.message });
     }
 };
 
 export const signUpUser = async (req, res) => {
     const {
         email,
+        phone,
         password,
         confirmPassword,
         firstName,
@@ -63,23 +61,21 @@ export const signUpUser = async (req, res) => {
 
         const result = await UsersModel.create({
             email,
+            phone,
             password: hashedPassword,
-            fullName: `${firstName} ${lastName}`,
+            name: `${firstName} ${lastName}`,
             height,
             weight,
         });
 
         const token = jwt.sign(
             { email: result.email, id: result._id },
-            "secretUserKey",
+            process.env.SECRET_USER_KEY,
             { expiresIn: "1h" }
         );
 
         res.status(200).json({ result, token });
     } catch (err) {
-        res.status(500).json({ error: err });
-        res.status(500).json({
-            message: "Something went wrong! Please try again",
-        });
+        res.status(500).json({ error: err.message });
     }
 };

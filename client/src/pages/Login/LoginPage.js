@@ -15,7 +15,7 @@ import jwt_decode from 'jwt-decode';
 import Input from '../../components/Auth/Input';
 
 //Actions
-import { signUpUser, signInUser } from '../../redux/actions/authUserActions';
+import { signInUser, signUpUser } from '../../redux/actions/authUserActions';
 
 const cx = classNames.bind(styles);
 const initialState = {
@@ -44,6 +44,7 @@ export default function LoginPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(formDataUser);
         if (isSignUp) {
             dispatch(signUpUser(formDataUser, navigate));
         } else {
@@ -66,7 +67,7 @@ export default function LoginPage() {
             dispatch({ type: 'AUTH_USER', data: { result, token } });
             navigate('/');
         } catch (err) {
-            console.log({ error: err });
+            console.log({ error: err.message });
         }
     };
     const googleError = (err) => {
@@ -117,6 +118,12 @@ export default function LoginPage() {
                                                         handleChange={handleChange}
                                                         type="number"
                                                         haft
+                                                    />
+                                                    <Input
+                                                        name="phone"
+                                                        label="Số điện thoại"
+                                                        handleChange={handleChange}
+                                                        type="tel"
                                                     />
                                                 </>
                                             )}

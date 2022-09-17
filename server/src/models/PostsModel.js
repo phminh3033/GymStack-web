@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const postsSchema = mongoose.Schema(
     {
+        name: { type: String },
         title: { type: String, required: true },
         description: { type: String, required: true },
         videoID: { type: String, required: true },

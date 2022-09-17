@@ -7,7 +7,7 @@ const authAdminReducers = (state = { authData: null }, action) => {
             console.log(action?.data);
             return { ...state, authData: action?.data };
         case LOGOUT_ADMIN:
-            localStorage.clear();
+            localStorage.removeItem('profileAdmin');
             console.log(action?.data);
             return { ...state, authData: null };
         default:

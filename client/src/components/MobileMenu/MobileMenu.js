@@ -22,6 +22,7 @@ import {
 
 //MUI library
 import Avatar from '@mui/material/Avatar';
+import { green } from '@mui/material/colors';
 
 const cx = classNames.bind(styles);
 
@@ -50,7 +51,12 @@ export default function MobileMenu({ className, handleCloseMenu }) {
                 <div className={cx('wrapper')}>
                     {user && (
                         <div className={cx('user')}>
-                            <Avatar className={cx('avatar')} src={user.result.picture} alt={user.result.name}>
+                            <Avatar
+                                className={cx('avatar')}
+                                src={user.result.picture}
+                                alt={user.result.name}
+                                sx={{ bgcolor: green[600] }}
+                            >
                                 {user.result.name.charAt(0).toUpperCase()}
                             </Avatar>
                             <div className={cx('fullName')}>{user?.result.name}</div>

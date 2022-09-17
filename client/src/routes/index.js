@@ -13,7 +13,7 @@ import PostPage from '../pages/Post/PostPage';
 import KnowledgePost from '../pages/Post/KnowledgePost';
 import NutritionPost from '../pages/Post/NutritionPost';
 import ExercisePost from '../pages/Post/ExercisePost';
-// import PostDetail from '../pages/Post/PostDetail/PostDetail';
+import PostDetail from '../pages/Post/PostDetail/PostDetail';
 
 //Admin pages
 import LoginAdminPage from '../pages/Login/LoginAdminPage';
@@ -35,6 +35,7 @@ const publicRoutes = [
     { path: '/posts/knowledge', component: KnowledgePost },
     { path: '/posts/nutrition', component: NutritionPost },
     { path: '/posts/exercise', component: ExercisePost },
+    { path: '/posts/:type/:id', component: PostDetail },
 
     //Admin routes
     { path: '/admin', component: LoginAdminPage, layout: null },

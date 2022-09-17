@@ -27,8 +27,8 @@ app.use(morgan("combined"));
 
 //Routes
 app.use("/posts", postRoutes);
-app.use("/admin", adminRoutes);
 app.use("/user", userRoutes);
+app.use("/admin", adminRoutes);
 
 //Connect to DB
 mongoose

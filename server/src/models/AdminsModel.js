@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 
 const adminsSchema = mongoose.Schema(
     {
-        id: { type: String, required: true },
-        fullName: { type: String, required: true },
-        phone: { type: Number, required: true },
+        id: { type: String },
+        name: { type: String, required: true },
+        email: { type: String, required: true },
+        phone: { type: String, required: true },
         password: { type: String, required: true },
     },
     {

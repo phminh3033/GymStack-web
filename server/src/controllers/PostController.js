@@ -8,18 +8,19 @@ export const getPosts = async (req, res) => {
         console.log("Posts", posts);
         res.status(200).json(posts);
     } catch (err) {
-        res.status(404).json({ error: err });
+        res.status(404).json({ error: err.message });
     }
 };
 
 export const createPost = async (req, res) => {
-    req.body.image = `https://img.youtube.com/vi/${req.body.videoID}/sddefault.jpg`;
-    const newPost = new PostsModel(req.body);
+    const post = req.body;
+    post.image = `https://img.youtube.com/vi/${post.videoID}/sddefault.jpg`;
+    const newPost = new PostsModel({ ...post, name: req.adminId });
     try {
         await newPost.save();
         res.status(201).json(newPost);
     } catch (err) {
-        res.status(409).json({ error: err });
+        res.status(409).json({ error: err.message });
     }
 };
 
@@ -69,8 +70,10 @@ export const likePost = async (req, res) => {
     const index = post.likes.findIndex((id) => id === String(req.userId));
 
     if (index === -1) {
+        //like
         post.likes.push(req.userId);
     } else {
+        //dislike
         post.likes = post.likes.filter((id) => id !== String(req.userId));
     }
 

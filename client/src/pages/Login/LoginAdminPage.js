@@ -47,6 +47,7 @@ export default function LoginAdminPage() {
         } else {
             dispatch(signInAdmin(formDataAdmin, navigate));
         }
+        setIsSignUp(false);
     };
     const handleChange = (e) => {
         setFormDataAdmin({ ...formDataAdmin, [e.target.name]: e.target.value });
@@ -64,7 +65,7 @@ export default function LoginAdminPage() {
             dispatch({ type: 'AUTH_ADMIN', data: { result, token } });
             navigate('/admin/dashboard');
         } catch (err) {
-            console.log({ error: err });
+            console.log({ error: err.message });
         }
     };
     const googleError = (err) => {
@@ -86,9 +87,15 @@ export default function LoginAdminPage() {
                                     <>
                                         <Input name="lastName" label="Họ" handleChange={handleChange} autoFocus haft />
                                         <Input name="firstName" label="Tên" handleChange={handleChange} haft />
+                                        <Input
+                                            name="phone"
+                                            label="Số điện thoại"
+                                            handleChange={handleChange}
+                                            type="tel"
+                                        />
                                     </>
                                 )}
-                                <Input name="phone" label="Số điện thoại" handleChange={handleChange} type="phone" />
+                                <Input name="email" label="Email" handleChange={handleChange} type="email" />
                                 <Input
                                     name="password"
                                     label="Password"

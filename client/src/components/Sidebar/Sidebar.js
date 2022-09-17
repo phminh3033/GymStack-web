@@ -26,7 +26,7 @@ export default function Sidebar() {
                 <Navbar className="dashboard">
                     <NavItem title="Dashboard" to="/admin/dashboard" icon={<DashboardIcon />} />
                     {/* <NavItem title="Admin" icon={<AdminIcon />} /> */}
-                    <NavItem title="Học viên" to="/admin/members" icon={<MemberIcon />} />
+                    <NavItem title="Người dùng" to="/admin/members" icon={<MemberIcon />} />
                     {/* <NavItem title="Huấn luyện viên" icon={<TrainerIcon />} />  */}
                     <NavItem title="Bài viết hữu ích" to="/admin/posts" icon={<PostIcon />} />
                 </Navbar>

@@ -6,6 +6,7 @@ import { googleLogout } from '@react-oauth/google';
 
 //MUI library
 import Avatar from '@mui/material/Avatar';
+import { orange } from '@mui/material/colors';
 
 //React library
 import { useState, useEffect } from 'react';
@@ -46,13 +47,18 @@ export default function HeaderAdmin() {
             </div>
             <div className={cx('info')}>
                 <div className={cx('admin-info')}>
-                    <Avatar className={cx('admin-ava')} src={user.result.picture} alt={user.result.name}>
+                    <Avatar
+                        className={cx('admin-ava')}
+                        src={user.result.picture}
+                        alt={user.result.name}
+                        sx={{ bgcolor: orange[700] }}
+                    >
                         {user.result.name.charAt(0).toUpperCase()}
                     </Avatar>
                     <ul className={cx('admin-details')}>
                         <li className={cx('admin-detail')}>Họ tên: &nbsp; {user.result.name}</li>
                         <li className={cx('admin-detail')}>Email: &nbsp; {user.result.email}</li>
-                        <li className={cx('admin-detail')}>Phone: &nbsp; 0363xxxxxx</li>
+                        <li className={cx('admin-detail')}>Phone: &nbsp; {user.result.phone}</li>
                     </ul>
                 </div>
                 <div className={cx('statistical')}>

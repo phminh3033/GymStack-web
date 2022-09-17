@@ -10,13 +10,14 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 //Middleware
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+// import { legacy_createStore as createStore, applyMiddleware, compose } from 'redux';
+// import thunk from 'redux-thunk';
+// import reducers from './redux/reducers';
 
-import reducers from './redux/reducers';
+import store from './store/ReduxStore';
 
 // mount it on the Store
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+// const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

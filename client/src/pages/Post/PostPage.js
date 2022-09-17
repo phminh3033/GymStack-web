@@ -5,6 +5,7 @@ import moment from 'moment';
 //React library
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getPosts } from '../../redux/actions/postActions';
 
 //materialUI library
@@ -32,26 +33,26 @@ export default function PostPage() {
     };
 
     return (
-        <>
-            <div className={cx('wrapper')}>
-                <div className={cx('grid', 'wide')}>
-                    <div className={cx('row', 'row-sidebarPost')}>
-                        <div className={cx('col', 'l-3', 'm-12', 'c-12')}>
-                            <div className={cx('sidebarPost')}>
-                                <Navbar className="sidebar-postPage">
-                                    <NavItem title="Kiến thức về sức khỏe" to={routePost.knowledge} />
-                                    <NavItem title="Dinh dưỡng / Thực phẩm" to={routePost.nutrition} />
-                                    <NavItem title="Bài tập" to={routePost.exercise} />
-                                </Navbar>
-                            </div>
+        <div className={cx('wrapper')}>
+            <div className={cx('grid', 'wide')}>
+                <div className={cx('row', 'row-sidebarPost')}>
+                    <div className={cx('col', 'l-3', 'm-12', 'c-12')}>
+                        <div className={cx('sidebarPost')}>
+                            <Navbar className="sidebar-postPage">
+                                <NavItem title="Kiến thức về sức khỏe" to={routePost.knowledge} />
+                                <NavItem title="Dinh dưỡng / Thực phẩm" to={routePost.nutrition} />
+                                <NavItem title="Bài tập" to={routePost.exercise} />
+                            </Navbar>
                         </div>
-                        <div className={cx('col', 'l-9', 'm-12', 'c-12')}>
-                            <div className={cx('right')}>
-                                <h2 className={cx('heading')}>BÀI VIẾT HỮU ÍCH</h2>
-                                {!posts.length ? (
-                                    <CircularProgress />
-                                ) : (
-                                    posts.map((post) => (
+                    </div>
+                    <div className={cx('col', 'l-9', 'm-12', 'c-12')}>
+                        <div className={cx('right')}>
+                            <h2 className={cx('heading')}>BÀI VIẾT HỮU ÍCH</h2>
+                            {!posts.length ? (
+                                <CircularProgress />
+                            ) : (
+                                posts.map((post) => (
+                                    <Link to={`/posts/${post.type}/${post._id}`}>
                                         <Card
                                             key={post._id}
                                             className="horizontal-card"
@@ -64,13 +65,13 @@ export default function PostPage() {
                                             idPost={post._id}
                                             likeCount={post.likeCount}
                                         />
-                                    ))
-                                )}
-                            </div>
+                                    </Link>
+                                ))
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

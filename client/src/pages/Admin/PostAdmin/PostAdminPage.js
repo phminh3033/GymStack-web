@@ -33,6 +33,8 @@ export default function PostAdminPage() {
     });
 
     const dispatch = useDispatch();
+    const admin = JSON.parse(localStorage.getItem('profileAdmin'));
+
     const posts = useSelector((state) => state.posts);
     const post = useSelector((state) => (currentID ? state.posts.find((p) => p._id === currentID) : null));
 
@@ -63,16 +65,17 @@ export default function PostAdminPage() {
             e.stopPropagation();
         }
         setValidated(true);
-        if (currentID) {
-            dispatch(updatePost(currentID, postData));
+
+        if (currentID === 0) {
+            dispatch(createPost({ ...postData, name: admin?.result?.name }));
         } else {
-            dispatch(createPost(postData));
+            dispatch(updatePost(currentID, { ...postData, name: admin?.result?.name }));
         }
         clearInput();
     };
 
     const clearInput = () => {
-        setCurrentID(null);
+        setCurrentID(0);
         setPostData({
             title: '',
             description: '',
@@ -98,7 +101,7 @@ export default function PostAdminPage() {
                                     <th>Video ID</th>
                                     <th>Loại</th>
                                     <th>Ngày tạo</th>
-                                    <th>Lượt thích</th>
+                                    <th>Người tạo</th>
                                     <th colSpan={2}></th>
                                 </tr>
                             </thead>
@@ -111,7 +114,7 @@ export default function PostAdminPage() {
                                         <td>{post.videoID}</td>
                                         <td>{post.type}</td>
                                         <td>{moment(post.createdAt).format('hh:mm - DD/MM/YYYY')}</td>
-                                        <td>{post.likeCount}</td>
+                                        <td>{post.name}</td>
                                         <td className={cx('table-btn-wrapper')}>
                                             <Button
                                                 variant="info"
