@@ -36,10 +36,12 @@ export default function PostAdminPage() {
     const admin = JSON.parse(localStorage.getItem('profileAdmin'));
 
     const posts = useSelector((state) => state.posts);
-    const post = useSelector((state) => (currentID ? state.posts.find((p) => p._id === currentID) : null));
+    const post = useSelector((state) => (currentID ? state.posts.find((p) => p._id === currentID) : 0));
 
     useEffect(() => {
-        if (post) setPostData(post);
+        if (post) {
+            setPostData(post);
+        }
     }, [post]);
 
     const handleOpenForm = () => {
@@ -67,6 +69,7 @@ export default function PostAdminPage() {
         setValidated(true);
 
         if (currentID === 0) {
+            console.log(admin?.result?.name);
             dispatch(createPost({ ...postData, name: admin?.result?.name }));
         } else {
             dispatch(updatePost(currentID, { ...postData, name: admin?.result?.name }));

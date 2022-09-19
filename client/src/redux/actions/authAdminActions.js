@@ -8,7 +8,7 @@ export const signInAdmin = (formDataAdmin, navigate) => async (dispatch) => {
         dispatch({ type: AUTH_ADMIN, data });
         navigate('/admin/dashboard');
     } catch (err) {
-        console.log({ error: err.message });
+        console.log({ errorSignInAdminAction: err.message });
     }
 };
 
@@ -19,6 +19,6 @@ export const signUpAdmin = (formDataAdmin, navigate) => async (dispatch) => {
         dispatch({ type: AUTH_ADMIN, data });
         navigate('/admin');
     } catch (err) {
-        console.log({ error: err.message });
+        console.log({ errorSignUpAdminAction: err.message });
     }
 };

@@ -5,3 +5,80 @@
     min-height: 100vh;
     margin-top: var(--header-height);
 }
+
+.row-sidebarPost {
+    padding: 40px 0;
+}
+
+.sidebarPost {
+    height: 100%;
+
+}
+
+.top-heading {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.heading {
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.sub-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    padding-top: 30px;
+    margin-left: 16px;
+
+    .content {
+        margin-left: 16px;
+    }
+}
+
+.card-wrapper {
+    
+    padding: 24px 28px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--white-color);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    display: flex;
+}
+
+.card-info {
+    padding-right: 28px;
+}
+.title {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.desc {
+    text-align: justify;
+    text-indent: 24px;
+}
+
+.like-action {
+    font-size: 2rem;
+    .icon-heart {
+        font-size: 2.5rem;
+        margin-right: 8px;
+    }
+}
+
+.card-video {
+    display: flex;
+    align-items: center;
+}

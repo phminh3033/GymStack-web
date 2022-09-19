@@ -3,7 +3,9 @@ import styles from './Card.module.scss';
 
 //FontAwesome Icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightLong, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
+
+import Favorite from '@mui/icons-material/Favorite';
 
 import { useDispatch } from 'react-redux';
 import { likePost } from '../../redux/actions/postActions';
@@ -26,8 +28,8 @@ export default function Card({ src, alt, type, createAt, title, desc, className,
                     <h2 className={cx('title')}>{title}</h2>
                     <p className={cx('desc')}>{desc}</p>
                     <button className={cx('like-btn')} onClick={() => dispatch(likePost(idPost))}>
+                        <Favorite className={cx('like-icon')} />
                         {likeCount}
-                        <FontAwesomeIcon className={cx('like-icon')} icon={faHeart} />
                     </button>
                 </div>
                 <div className={cx('card-btn')}>

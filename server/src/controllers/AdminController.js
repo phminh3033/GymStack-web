@@ -23,7 +23,11 @@ export const signInAdmin = async (req, res) => {
         }
 
         const token = jwt.sign(
-            { email: existingAdmin.email, id: existingAdmin._id },
+            {
+                email: existingAdmin.email,
+                id: existingAdmin._id,
+                name: existingAdmin.name,
+            },
             process.env.SECRET_ADMIN_KEY,
             { expiresIn: "1h" }
         );
@@ -62,7 +66,7 @@ export const signUpAdmin = async (req, res) => {
         });
 
         const token = jwt.sign(
-            { email: result.email, id: result._id },
+            { email: result.email, id: result._id, name: result.name },
             process.env.SECRET_ADMIN_KEY,
             { expiresIn: "1h" }
         );

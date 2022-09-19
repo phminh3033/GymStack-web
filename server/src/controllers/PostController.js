@@ -1,6 +1,16 @@
 import mongoose from "mongoose";
 import PostsModel from "../models/PostsModel.js";
 
+export const getPost = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const post = await PostsModel.findById(id);
+        res.status(200).json(post);
+    } catch (err) {
+        res.status(404).json({ errorGetPostController: err.message });
+    }
+};
+
 export const getPosts = async (req, res) => {
     try {
         const posts = await PostsModel.find();
@@ -8,19 +18,19 @@ export const getPosts = async (req, res) => {
         console.log("Posts", posts);
         res.status(200).json(posts);
     } catch (err) {
-        res.status(404).json({ error: err.message });
+        res.status(404).json({ errorGetPostsController: err.message });
     }
 };
 
 export const createPost = async (req, res) => {
     const post = req.body;
     post.image = `https://img.youtube.com/vi/${post.videoID}/sddefault.jpg`;
-    const newPost = new PostsModel({ ...post, name: req.adminId });
+    const newPost = new PostsModel({ ...post, creator: req.adminId });
     try {
         await newPost.save();
         res.status(201).json(newPost);
     } catch (err) {
-        res.status(409).json({ error: err.message });
+        res.status(409).json({ errorCreatePostController: err.message });
     }
 };
 
@@ -29,11 +39,11 @@ export const updatePost = async (req, res) => {
     const post = req.body;
     const update = {
         ...post,
-        image: `https://img.youtube.com/vi/${req.body.videoID}/sddefault.jpg`,
+        image: `https://img.youtube.com/vi/${post.videoID}/sddefault.jpg`,
     };
 
     if (!mongoose.Types.ObjectId.isValid(_id)) {
-        return res.status(404).send("No post with that id: " + _id);
+        return res.status(404).send("No post with that id: ", _id);
     }
 
     const updatedPost = await PostsModel.findByIdAndUpdate(_id, update, {
@@ -47,7 +57,7 @@ export const deletePost = async (req, res) => {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).send("No post with that id: " + _id);
+        return res.status(404).send("No post with that id: ", id);
     }
 
     await PostsModel.findByIdAndRemove(id);
@@ -62,7 +72,7 @@ export const likePost = async (req, res) => {
     }
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).send("No post with that id: " + id);
+        return res.status(404).send("No post with that id: ", id);
     }
 
     const post = await PostsModel.findById(id);

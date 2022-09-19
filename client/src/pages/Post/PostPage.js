@@ -52,9 +52,8 @@ export default function PostPage() {
                                 <CircularProgress />
                             ) : (
                                 posts.map((post) => (
-                                    <Link to={`/posts/${post.type}/${post._id}`}>
+                                    <Link key={post._id} to={`/posts/${post.type}/${post._id}`}>
                                         <Card
-                                            key={post._id}
                                             className="horizontal-card"
                                             src={post.image}
                                             alt={post.title}

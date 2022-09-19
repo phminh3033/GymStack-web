@@ -2,20 +2,24 @@ import axios from 'axios';
 
 const API = axios.create({ baseURL: 'http://localhost:5500', headers: { 'Content-Type': 'application/json' } });
 
-API.interceptors.request.use((req) => {
-    if (localStorage.getItem('profileUser')) {
-        req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('profileUser')).token}`;
-    }
-    return req;
-});
+API.interceptors.request.use(
+    (req) => {
+        if (localStorage.getItem('profileUser')) {
+            req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('profileUser')).token}`;
+        } else if (localStorage.getItem('profileAdmin')) {
+            req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('profileAdmin')).token}`;
+        } else {
+            console.log('Not Found Local Storage!');
+        }
+        return req;
+    },
+    (err) => {
+        console.log({ errorInterceptors: err.message });
+        return Promise.reject(err);
+    },
+);
 
-API.interceptors.request.use((req) => {
-    if (localStorage.getItem('profileAdmin')) {
-        req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('profileAdmin')).token}`;
-    }
-    return req;
-});
-
+export const fetchPost = (id) => API.get(`/posts/${id}`);
 export const fetchPosts = () => API.get(`/posts`);
 export const createPost = (newPost) => API.post(`/posts`, newPost);
 export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);

@@ -2,12 +2,9 @@ import jwt from "jsonwebtoken";
 
 const authAdmin = async (req, res, next) => {
     try {
-        const token =
-            req.headers.authorization.split(" ")[1] ||
-            req.headers.Authorization.split(" ")[1];
+        const token = req.headers.authorization.split(" ")[1];
         const isCustomAuth = token.length < 500; //own token, google token > 500
         let decodedData;
-
         if (token && isCustomAuth) {
             decodedData = jwt.verify(token, process.env.SECRET_ADMIN_KEY);
             req.adminId = decodedData?.id;
@@ -17,7 +14,7 @@ const authAdmin = async (req, res, next) => {
         }
         next();
     } catch (err) {
-        console.log({ error: err.message });
+        console.log({ errorAuthAdmin: err.message });
     }
 };
 

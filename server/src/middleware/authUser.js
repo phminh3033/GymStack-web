@@ -2,9 +2,7 @@ import jwt from "jsonwebtoken";
 
 const authUser = async (req, res, next) => {
     try {
-        const token =
-            req.headers.authorization.split(" ")[1] ||
-            req.headers.Authorization.split(" ")[1];
+        const token = req.headers.authorization.split(" ")[1];
         const isCustomAuth = token.length < 500; //own token, google token > 500
         let decodedData;
 
@@ -17,7 +15,7 @@ const authUser = async (req, res, next) => {
         }
         next();
     } catch (err) {
-        console.log({ error: err.message });
+        console.log({ errorAuthUser: err.message });
     }
 };
 
