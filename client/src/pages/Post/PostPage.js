@@ -15,6 +15,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Card from '../../components/Card/Card';
 import Navbar from '../../components/Navbar/Navbar';
 import NavItem from '../../components/Navbar/NavItem';
+import Paginate from '../../components/Paginate/Paginate';
 
 const cx = classNames.bind(styles);
 
@@ -62,12 +63,17 @@ export default function PostPage() {
                                             type={`#${post.type}`}
                                             createAt={moment(post.createdAt).format('DD/MM/YYYY')}
                                             idPost={post._id}
-                                            likeCount={post.likeCount}
+                                            likeCount={post.likes.length < 1 ? 0 : post.likes}
                                         />
                                     </Link>
                                 ))
                             )}
                         </div>
+                    </div>
+                </div>
+                <div className={cx('row', 'row-paginate')}>
+                    <div className={cx('paginate')}>
+                        <Paginate />
                     </div>
                 </div>
             </div>

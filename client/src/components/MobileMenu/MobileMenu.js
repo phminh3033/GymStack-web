@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './MobileMenu.module.scss';
+import decode from 'jwt-decode';
 
 import { googleLogout } from '@react-oauth/google';
 
@@ -33,9 +34,16 @@ export default function MobileMenu({ className, handleCloseMenu }) {
     const location = useLocation();
 
     useEffect(() => {
-        // const token = user?.token;
-        //JWT...
+        const token = user?.token;
+        //JWT... when jwt expiry
+        if (token) {
+            const decodedToken = decode(token);
+            if (decodedToken.exp * 1000 < new Date().getTime()) {
+                handleLogOut();
+            }
+        }
         setUser(JSON.parse(localStorage.getItem('profileUser')));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
 
     const handleLogOut = () => {

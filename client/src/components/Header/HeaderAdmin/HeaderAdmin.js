@@ -4,14 +4,18 @@ import styles from './HeaderAdmin.module.scss';
 import images from '../../../assets/images';
 import { googleLogout } from '@react-oauth/google';
 
+import decode from 'jwt-decode';
+
 //MUI library
 import Avatar from '@mui/material/Avatar';
 import { orange } from '@mui/material/colors';
 
 //React library
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import { getPosts } from '../../../redux/actions/postActions';
 
 //FontAwesome Icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,15 +28,28 @@ const cx = classNames.bind(styles);
 
 export default function HeaderAdmin() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profileAdmin')));
+    const posts = useSelector((state) => state.posts);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
-        // const token = user?.token;
-        //JWT...
+        const token = user?.token;
+        //JWT... when jwt expiry
+        if (token) {
+            const decodedToken = decode(token);
+            if (decodedToken.exp * 1000 < new Date().getTime()) {
+                handleLogOut();
+            }
+        }
         setUser(JSON.parse(localStorage.getItem('profileAdmin')));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
+
+    useEffect(() => {
+        dispatch(getPosts());
+    }, [dispatch]);
 
     const handleLogOut = () => {
         dispatch({ type: 'LOGOUT_ADMIN' });
@@ -73,7 +90,7 @@ export default function HeaderAdmin() {
                         <PostIcon width={'3rem'} />
                         <div className={cx('detail')}>
                             <h3 className={cx('title')}>Bài viết</h3>
-                            <p className={cx('number')}>68</p>
+                            <p className={cx('number')}>{posts.length}</p>
                         </div>
                     </div>
                 </div>

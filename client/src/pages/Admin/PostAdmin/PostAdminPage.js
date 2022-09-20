@@ -105,7 +105,7 @@ export default function PostAdminPage() {
                                     <th>Loại</th>
                                     <th>Ngày tạo</th>
                                     <th>Người tạo</th>
-                                    <th colSpan={2}></th>
+                                    <th colSpan={2}>Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -116,32 +116,37 @@ export default function PostAdminPage() {
                                         <td>{post.description}</td>
                                         <td>{post.videoID}</td>
                                         <td>{post.type}</td>
-                                        <td>{moment(post.createdAt).format('hh:mm - DD/MM/YYYY')}</td>
+                                        <td>{moment(post.createdAt).format('HH:mm - DD/MM/YYYY')}</td>
                                         <td>{post.name}</td>
                                         <td className={cx('table-btn-wrapper')}>
-                                            <Button
-                                                variant="info"
-                                                className={cx('table-btn')}
-                                                onClick={() => {
-                                                    if (!hide && !pushTable) {
-                                                        setHide(hide);
-                                                        setPutTable(pushTable);
-                                                    } else {
-                                                        setHide(!hide);
-                                                        setPutTable(!pushTable);
-                                                    }
-                                                    setCurrentID(post._id);
-                                                }}
-                                            >
-                                                Sửa
-                                            </Button>
-                                            <Button
-                                                variant="danger"
-                                                className={cx('table-btn')}
-                                                onClick={() => dispatch(deletePost(post._id))}
-                                            >
-                                                Xóa
-                                            </Button>
+                                            {(admin?.result?.sub === post?.creator ||
+                                                admin?.result?._id === post?.creator) && (
+                                                <>
+                                                    <Button
+                                                        variant="info"
+                                                        className={cx('table-btn')}
+                                                        onClick={() => {
+                                                            if (!hide && !pushTable) {
+                                                                setHide(hide);
+                                                                setPutTable(pushTable);
+                                                            } else {
+                                                                setHide(!hide);
+                                                                setPutTable(!pushTable);
+                                                            }
+                                                            setCurrentID(post._id);
+                                                        }}
+                                                    >
+                                                        Sửa
+                                                    </Button>
+                                                    <Button
+                                                        variant="danger"
+                                                        className={cx('table-btn')}
+                                                        onClick={() => dispatch(deletePost(post._id))}
+                                                    >
+                                                        Xóa
+                                                    </Button>
+                                                </>
+                                            )}
                                         </td>
                                     </tr>
                                 ))}

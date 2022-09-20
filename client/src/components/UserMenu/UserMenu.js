@@ -1,12 +1,8 @@
 import classNames from 'classnames/bind'; //Allows to write class names with '-' => Ex: post-item
 import styles from './UserMenu.module.scss';
 
-import { googleLogout } from '@react-oauth/google';
-
 //React library
-import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 //MUI library
 import Avatar from '@mui/material/Avatar';
@@ -14,24 +10,7 @@ import { green } from '@mui/material/colors';
 
 const cx = classNames.bind(styles);
 
-export default function UserMenu() {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profileUser')));
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    useEffect(() => {
-        // const token = user?.token;
-        //JWT...
-        setUser(JSON.parse(localStorage.getItem('profileUser')));
-    }, [location]);
-
-    const handleLogOut = () => {
-        dispatch({ type: 'LOGOUT_USER' });
-        navigate(location);
-        googleLogout();
-        setUser(null);
-    };
+export default function UserMenu({ user, handleLogOut }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('user')}>

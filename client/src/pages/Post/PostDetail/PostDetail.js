@@ -37,7 +37,7 @@ export default function PostDetail() {
             if (post.likes.length > 0) {
                 return post.likes.find((like) => like === (user?.result?.sub || user?.result?._id)) ? (
                     <>
-                        <Favorite />
+                        <Favorite className={cx('icon-heart')} />
                         {post.likes.length > 2
                             ? `Bạn và ${post.likes.length - 1} người khác`
                             : `${post.likes.length} đã thích`}
@@ -103,10 +103,9 @@ export default function PostDetail() {
                                         không biết khoe thì phí công tập chính vì vậy hôm nay mình đã sang SmallGym để
                                         xin chú Huy bí kíp posing như 1 VĐV.
                                     </p>
-                                    <div className={cx('like-action')}>
-                                        <Favorite className={cx('icon-heart')} />
-                                        12
-                                    </div>
+                                    <button className={cx('like-action')} disabled={!user?.result}>
+                                        <Likes />
+                                    </button>
                                 </div>
                                 <div className={cx('card-video')}>
                                     <iframe
