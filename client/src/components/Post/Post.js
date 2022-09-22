@@ -15,7 +15,7 @@ import Card from '../../components/Card/Card';
 const cx = classNames.bind(styles);
 
 export default function Post() {
-    const posts = useSelector((state) => state.posts);
+    const { posts } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function Post() {
                     </Link>
                 </div>
                 <div className={cx('row')}>
-                    {posts.map((post) => (
+                    {posts?.map((post) => (
                         <div key={post._id} className={cx('col', 'l-3', 'm-6', 'c-12')}>
                             <Card
                                 src={post.image}

@@ -33,7 +33,7 @@ export default function PostDetail() {
     }
 
     const Likes = () => {
-        posts.map((post) => {
+        posts?.map((post) => {
             if (post.likes.length > 0) {
                 return post.likes.find((like) => like === (user?.result?.sub || user?.result?._id)) ? (
                     <>

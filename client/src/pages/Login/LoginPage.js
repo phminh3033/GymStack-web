@@ -44,7 +44,6 @@ export default function LoginPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formDataUser);
         if (isSignUp) {
             dispatch(signUpUser(formDataUser, navigate));
         } else {
@@ -56,13 +55,11 @@ export default function LoginPage() {
     };
 
     const googleSuccess = async (res) => {
-        console.log(res);
-        console.log(res.credential);
+        // console.log(res);
+        // console.log(res.credential);
         console.log(jwt_decode(res.credential));
-
         const result = jwt_decode(res?.credential);
         const token = res?.credential;
-
         try {
             dispatch({ type: 'AUTH_USER', data: { result, token } });
             navigate('/');

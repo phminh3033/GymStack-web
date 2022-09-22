@@ -2,6 +2,9 @@ import classNames from 'classnames/bind'; //Allows to write class names with '-'
 import styles from './PostPage.module.scss';
 import moment from 'moment';
 
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,11 +21,12 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Card from '../../components/Card/Card';
 import Navbar from '../../components/Navbar/Navbar';
 import NavItem from '../../components/Navbar/NavItem';
+import { SearchIcon } from '../../components/Icon';
 
 const cx = classNames.bind(styles);
 
 export default function KnowledgePost() {
-    const posts = useSelector((state) => state.posts);
+    const { posts } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -35,7 +39,7 @@ export default function KnowledgePost() {
         exercise: '/posts/exercise',
     };
 
-    const postFilters = posts.filter((post) => post.type === 'knowledge');
+    const postFilters = posts?.filter((post) => post.type === 'knowledge');
     return (
         <>
             <div className={cx('wrapper')}>
@@ -53,13 +57,20 @@ export default function KnowledgePost() {
                         <div className={cx('col', 'l-9', 'm-12', 'c-12')}>
                             <div className={cx('right')}>
                                 <div className={cx('top-heading')}>
-                                    <Link to="/posts" className={cx('heading')}>
-                                        BÀI VIẾT HỮU ÍCH
-                                    </Link>
-                                    <div className={cx('sub-heading')}>
-                                        <FontAwesomeIcon className={cx('icon')} icon={faAngleRight} />
-                                        <span className={cx('content')}>Kiến thức về sức khỏe</span>
+                                    <div className={cx('info-heading')}>
+                                        <Link to="/posts" className={cx('heading')}>
+                                            BÀI VIẾT HỮU ÍCH
+                                        </Link>
+                                        <div className={cx('sub-heading')}>
+                                            <FontAwesomeIcon className={cx('icon')} icon={faAngleRight} />
+                                            <span className={cx('content')}>Kiến thức về sức khỏe</span>
+                                        </div>
                                     </div>
+                                    <Tippy content="Tìm kiếm bài viết hữu ích" placement="bottom">
+                                        <Link to="/posts/search" className={cx('search')}>
+                                            <SearchIcon className={cx('icon-search')} />
+                                        </Link>
+                                    </Tippy>
                                 </div>
                                 {!postFilters.length ? (
                                     <LinearProgress />

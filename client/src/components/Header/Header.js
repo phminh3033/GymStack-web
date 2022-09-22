@@ -21,7 +21,6 @@ import { useDispatch } from 'react-redux';
 import images from '../../assets/images';
 
 //component
-import Search from '../Search/Search';
 import Navbar from '../Navbar/Navbar';
 import NavItem from '../Navbar/NavItem';
 import UserMenu from '../UserMenu/UserMenu';
@@ -63,13 +62,10 @@ export default function Header({ handleOpenMenu }) {
                 </Link>
 
                 <Navbar>
-                    <NavItem title="GÓI TẬP LUYỆN" to="/trainingPack" />
+                    <NavItem title="BÀI VIẾT HỮU ÍCH" to="/posts" />
                     <NavItem title="BÀI TẬP" to="/exercise" />
                     <NavItem title="HUẤN LUYỆN VIÊN" to="/trainer" />
-                    <NavItem title="BÀI VIẾT HỮU ÍCH" to="/posts" />
                 </Navbar>
-
-                <Search />
 
                 {user ? (
                     <div>
@@ -104,7 +100,6 @@ export default function Header({ handleOpenMenu }) {
                 <Link to="/" className={cx('logo')}>
                     <img src={images.logo} alt="GymStack logo" />
                 </Link>
-                <Search />
                 <div className={cx('mobile-menu')} onClick={handleOpenMenu}>
                     <FontAwesomeIcon className={cx('menu-icon')} icon={faBars} />
                 </div>

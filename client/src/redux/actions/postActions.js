@@ -2,6 +2,7 @@ import * as api from '../../api';
 import {
     FETCH_ALL_POSTS,
     FETCH_POST,
+    FETCH_BY_SEARCH,
     CREATE_POST,
     UPDATE_POST,
     DELETE_POST,
@@ -20,14 +21,27 @@ export const getPost = (id) => async (dispatch) => {
     }
 };
 
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
     try {
         // dispatch({ type: START_LOADING });
-        const { data } = await api.fetchPosts();
+        const { data } = await api.fetchPosts(page);
+        console.log(data);
         dispatch({ type: FETCH_ALL_POSTS, payload: data });
         // dispatch({ type: END_LOADING });
     } catch (err) {
         console.log({ errorGetPostsAction: err.message });
+    }
+};
+
+export const getPostsBySearch = (searchQuery) => async (dispatch) => {
+    try {
+        const {
+            data: { data },
+        } = await api.fetchPostsBySearch(searchQuery);
+        console.log(data);
+        dispatch({ type: FETCH_BY_SEARCH, payload: data });
+    } catch (err) {
+        console.log({ errorGetPostsBySearchAction: err.message });
     }
 };
 

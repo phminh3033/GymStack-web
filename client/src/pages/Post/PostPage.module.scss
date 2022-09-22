@@ -17,6 +17,43 @@
 
 .top-heading {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-heading.search-post {
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.back-page {
+    font-size: 1.8rem;
+    font-weight: 500;
+    .icon-back {
+        margin-right: 8px;
+    }
+
+    &:hover {
+        color: var(--primary-color);
+    }
+}
+
+.search {
+    padding: 8px;
+    border: 1px solid var(--primary-color);
+    border-radius: 50%;
+    transition: all .2s ease;
+
+    &:hover {
+        background-color: var(--primary-color);
+        .icon-search {
+            color: var(--white-color);
+        }
+    }
+}
+
+.info-heading {
+    display: flex;
 }
 
 .heading {
@@ -38,6 +75,11 @@
 }
 
 .row-paginate {
+    display: flex;
+    justify-content: center;
+}
+
+.paginate {
     display: flex;
     justify-content: center;
 }

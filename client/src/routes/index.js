@@ -5,7 +5,6 @@ import AdminLayout from '../layouts/AdminLayout/AdminLayout';
 import HomePage from '../pages/Home/HomePage';
 import LoginPage from '../pages/Login/LoginPage';
 import RegisterPage from '../pages/Register/RegisterPage';
-import TrainingPackPage from '../pages/TrainingPack/TrainingPackPage';
 import ExercisePage from '../pages/Exercise/ExercisePage';
 import TrainerPage from '../pages/Trainer/TrainerPage';
 //PostPage
@@ -14,6 +13,7 @@ import KnowledgePost from '../pages/Post/KnowledgePost';
 import NutritionPost from '../pages/Post/NutritionPost';
 import ExercisePost from '../pages/Post/ExercisePost';
 import PostDetail from '../pages/Post/PostDetail/PostDetail';
+import SearchPostPage from '../pages/Post/SearchPostPage';
 
 //Admin pages
 import LoginAdminPage from '../pages/Login/LoginAdminPage';
@@ -26,7 +26,6 @@ const publicRoutes = [
     { path: '/', component: HomePage },
     { path: '/login', component: LoginPage },
     { path: '/register', component: RegisterPage },
-    { path: '/trainingPack', component: TrainingPackPage },
     { path: '/exercise', component: ExercisePage },
     { path: '/trainer', component: TrainerPage },
 
@@ -36,12 +35,14 @@ const publicRoutes = [
     { path: '/posts/nutrition', component: NutritionPost },
     { path: '/posts/exercise', component: ExercisePost },
     { path: '/posts/:type/:id', component: PostDetail },
+    { path: '/posts/search', component: SearchPostPage },
 
     //Admin routes
     { path: '/admin', component: LoginAdminPage, layout: null },
     { path: '/admin/dashboard', component: DashboardPage, layout: AdminLayout },
     { path: '/admin/members', component: Member, layout: AdminLayout },
     { path: '/admin/posts', component: PostAdminPage, layout: AdminLayout },
+    { path: '/admin/posts/search', component: PostAdminPage, layout: AdminLayout },
 ];
 
 //Must be login

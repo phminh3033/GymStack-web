@@ -16,6 +16,9 @@ import Form from 'react-bootstrap/Form';
 //Actions
 import { createPost, updatePost, deletePost } from '../../../redux/actions/postActions';
 
+//components
+import Search from '../../../components/Search/Search';
+
 const cx = classNames.bind(styles);
 
 export default function PostAdminPage() {
@@ -35,7 +38,7 @@ export default function PostAdminPage() {
     const dispatch = useDispatch();
     const admin = JSON.parse(localStorage.getItem('profileAdmin'));
 
-    const posts = useSelector((state) => state.posts);
+    const { posts } = useSelector((state) => state.posts);
     const post = useSelector((state) => (currentID ? state.posts.find((p) => p._id === currentID) : 0));
 
     useEffect(() => {
@@ -90,9 +93,12 @@ export default function PostAdminPage() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('left', { pushTable: pushTable })}>
-                <Button variant="primary" className={cx('addPost-btn')} onClick={handleOpenForm}>
-                    Thêm bài viết
-                </Button>
+                <div className={cx('top-action')}>
+                    <Button variant="primary" className={cx('addPost-btn')} onClick={handleOpenForm}>
+                        Thêm bài viết
+                    </Button>
+                    <Search navigatePath="/admin/posts" />
+                </div>
                 <Grow in>
                     <div className={cx('table-container')}>
                         <Table bordered hover className={cx('table')}>
@@ -109,7 +115,7 @@ export default function PostAdminPage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {posts.map((post) => (
+                                {posts?.map((post) => (
                                     <tr key={post._id}>
                                         <td>{post._id}</td>
                                         <td>{post.title}</td>

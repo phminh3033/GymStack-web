@@ -2,16 +2,20 @@ import classNames from 'classnames/bind'; //Allows to write class names with '-'
 import styles from './PostPage.module.scss';
 import moment from 'moment';
 
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
+
 //React library
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getPosts } from '../../redux/actions/postActions';
 
 //materialUI library
 import CircularProgress from '@mui/material/CircularProgress';
 
 //Component
+import { SearchIcon } from '../../components/Icon';
 import Card from '../../components/Card/Card';
 import Navbar from '../../components/Navbar/Navbar';
 import NavItem from '../../components/Navbar/NavItem';
@@ -19,9 +23,17 @@ import Paginate from '../../components/Paginate/Paginate';
 
 const cx = classNames.bind(styles);
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
 export default function PostPage() {
-    const posts = useSelector((state) => state.posts);
+    const { posts } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
+    const query = useQuery();
+    //paginate
+    const page = query.get('page') || 1;
+    const searchQuery = query.get('searchQuery');
 
     useEffect(() => {
         dispatch(getPosts());
@@ -48,11 +60,18 @@ export default function PostPage() {
                     </div>
                     <div className={cx('col', 'l-9', 'm-12', 'c-12')}>
                         <div className={cx('right')}>
-                            <h2 className={cx('heading')}>BÀI VIẾT HỮU ÍCH</h2>
-                            {!posts.length ? (
+                            <div className={cx('top-heading')}>
+                                <h2 className={cx('heading')}>BÀI VIẾT HỮU ÍCH</h2>
+                                <Tippy content="Tìm kiếm bài viết hữu ích" placement="bottom">
+                                    <Link to="/posts/search" className={cx('search')}>
+                                        <SearchIcon className={cx('icon-search')} />
+                                    </Link>
+                                </Tippy>
+                            </div>
+                            {!posts?.length ? (
                                 <CircularProgress />
                             ) : (
-                                posts.map((post) => (
+                                posts?.map((post) => (
                                     <Link key={post._id} to={`/posts/${post.type}/${post._id}`}>
                                         <Card
                                             className="horizontal-card"
@@ -68,12 +87,10 @@ export default function PostPage() {
                                     </Link>
                                 ))
                             )}
+                            <div className={cx('paginate')}>
+                                <Paginate page={page} />
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className={cx('row', 'row-paginate')}>
-                    <div className={cx('paginate')}>
-                        <Paginate />
                     </div>
                 </div>
             </div>

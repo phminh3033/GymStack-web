@@ -1,6 +1,7 @@
 import {
     FETCH_POST,
     FETCH_ALL_POSTS,
+    FETCH_BY_SEARCH,
     CREATE_POST,
     UPDATE_POST,
     LIKE_POST,
@@ -40,18 +41,26 @@ import {
 //     }
 // }
 
-export default function postsReducers(posts = [], action) {
+export default function postsReducers(state = [], action) {
     switch (action.type) {
         case FETCH_ALL_POSTS:
-            return action.payload;
+            return {
+                ...state,
+                posts: action.payload.data,
+                currentPage: action.payload.currentPage,
+                numberOfPages: action.payload.numberOfPages,
+            };
+        case FETCH_BY_SEARCH:
+            return { ...state, posts: action.payload };
         case CREATE_POST:
-            return [...posts, action.payload];
+            return [...state, action.payload];
         case UPDATE_POST:
+            return state.map((post) => (post._id === action.payload._id ? action.payload : post));
         case LIKE_POST:
-            return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
+            return state.map((post) => (post._id === action.payload._id ? action.payload : post));
         case DELETE_POST:
-            return posts.filter((post) => post._id !== action.payload);
+            return state.filter((post) => post._id !== action.payload);
         default:
-            return posts;
+            return state;
     }
 }
