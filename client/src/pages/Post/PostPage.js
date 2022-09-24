@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'; //Allows to write class names with '-' => Ex: post-item
 import styles from './PostPage.module.scss';
+import images from '../../assets/images';
 import moment from 'moment';
 
 import Tippy from '@tippyjs/react';
@@ -12,7 +13,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { getPosts } from '../../redux/actions/postActions';
 
 //materialUI library
-import CircularProgress from '@mui/material/CircularProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 
 //Component
 import { SearchIcon } from '../../components/Icon';
@@ -28,12 +29,12 @@ function useQuery() {
 }
 
 export default function PostPage() {
-    const { posts } = useSelector((state) => state.posts);
+    const { posts, isLoading } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
     const query = useQuery();
     //paginate
     const page = query.get('page') || 1;
-    const searchQuery = query.get('searchQuery');
+    // const searchQuery = query.get('searchQuery');
 
     useEffect(() => {
         dispatch(getPosts());
@@ -68,8 +69,15 @@ export default function PostPage() {
                                     </Link>
                                 </Tippy>
                             </div>
-                            {!posts?.length ? (
-                                <CircularProgress />
+                            {!posts?.length && !isLoading ? (
+                                <div className={cx('noPost')}>
+                                    <img className={cx('noPost-img')} src={images.postNotFound} alt="postNotFound" />
+                                    <h2 className={cx('noPost-content')}>
+                                        Rất tiếc! Không có bài viết được tìm thấy...
+                                    </h2>
+                                </div>
+                            ) : isLoading ? (
+                                <LinearProgress className={cx('linearProgress')} />
                             ) : (
                                 posts?.map((post) => (
                                     <Link key={post._id} to={`/posts/${post.type}/${post._id}`}>
@@ -88,7 +96,7 @@ export default function PostPage() {
                                 ))
                             )}
                             <div className={cx('paginate')}>
-                                <Paginate page={page} />
+                                <Paginate page={page} pathPage="/posts" />
                             </div>
                         </div>
                     </div>

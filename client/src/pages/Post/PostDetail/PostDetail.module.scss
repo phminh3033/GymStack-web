@@ -7,7 +7,7 @@
 }
 
 .row-sidebarPost {
-    padding: 40px 0;
+    margin-bottom: 40px;
 }
 
 .sidebarPost {
@@ -16,6 +16,7 @@
 }
 
 .top-heading {
+    padding-top: 28px;
     display: flex;
     margin-bottom: 25px;
 }
@@ -39,7 +40,7 @@
 }
 
 .card-wrapper {
-    
+    width: 100%;
     padding: 24px 28px;
     border-radius: 10px;
     overflow: hidden;
@@ -71,10 +72,13 @@
 }
 
 .like-action {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    border: none;
+    background-color: transparent;
     .icon-heart {
         font-size: 2.5rem;
         margin-right: 8px;
+        color: var(--primary-color);
     }
 }
 

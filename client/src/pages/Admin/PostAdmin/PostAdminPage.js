@@ -7,6 +7,7 @@ import Grow from '@mui/material/Grow';
 //react library
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 //react-bootstrap library
 import Table from 'react-bootstrap/Table';
@@ -18,14 +19,25 @@ import { createPost, updatePost, deletePost } from '../../../redux/actions/postA
 
 //components
 import Search from '../../../components/Search/Search';
+import Paginate from '../../../components/Paginate/Paginate';
 
 const cx = classNames.bind(styles);
+
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
 
 export default function PostAdminPage() {
     const [hide, setHide] = useState(true);
     const [pushTable, setPutTable] = useState(true);
     const [validated, setValidated] = useState(false);
     const [currentID, setCurrentID] = useState(0);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const query = useQuery();
+
+    //paginate
+    const page = query.get('page') || 1;
 
     //DB
     const [postData, setPostData] = useState({
@@ -35,11 +47,10 @@ export default function PostAdminPage() {
         type: '',
     });
 
-    const dispatch = useDispatch();
     const admin = JSON.parse(localStorage.getItem('profileAdmin'));
 
     const { posts } = useSelector((state) => state.posts);
-    const post = useSelector((state) => (currentID ? state.posts.find((p) => p._id === currentID) : 0));
+    const post = useSelector((state) => (currentID ? state.posts.posts.find((p) => p._id === currentID) : 0));
 
     useEffect(() => {
         if (post) {
@@ -72,8 +83,7 @@ export default function PostAdminPage() {
         setValidated(true);
 
         if (currentID === 0) {
-            console.log(admin?.result?.name);
-            dispatch(createPost({ ...postData, name: admin?.result?.name }));
+            dispatch(createPost({ ...postData, name: admin?.result?.name, navigate }));
         } else {
             dispatch(updatePost(currentID, { ...postData, name: admin?.result?.name }));
         }
@@ -158,6 +168,9 @@ export default function PostAdminPage() {
                                 ))}
                             </tbody>
                         </Table>
+                        <div className={cx('paginate')}>
+                            <Paginate page={page} pathPage="/admin/posts" className={cx('pagination')} />
+                        </div>
                     </div>
                 </Grow>
             </div>

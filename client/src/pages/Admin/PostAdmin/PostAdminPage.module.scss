@@ -36,6 +36,13 @@
                 }
             }
         }
+
+        .paginate {
+            margin-top: 16px;
+            .pagination {
+                color: var(--primary-color-admin);
+            }
+        }
     }
 }
 

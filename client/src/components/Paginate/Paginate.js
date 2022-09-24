@@ -7,12 +7,13 @@ import { Pagination, PaginationItem } from '@mui/material';
 //React library
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getPosts } from '../../redux/actions/postActions';
 
 const cx = classNames.bind(styles);
 
-export default function Paginate({ posts, page }) {
+export default function Paginate({ page, pathPage }) {
+    const { numberOfPages } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,8 +26,8 @@ export default function Paginate({ posts, page }) {
         <div>
             <Pagination
                 className={cx('pagination')}
-                count={10}
-                page={1}
+                count={numberOfPages}
+                page={Number(page) || 1}
                 color="standard"
                 size="large"
                 renderItem={(item) => (
@@ -34,7 +35,7 @@ export default function Paginate({ posts, page }) {
                         className={cx('pagination-item')}
                         {...item}
                         component={Link}
-                        to={`/posts?page=${1}`}
+                        to={`${pathPage}?page=${item.page}`}
                     />
                 )}
             />

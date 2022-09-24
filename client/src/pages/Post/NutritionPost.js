@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'; //Allows to write class names with '-' => Ex: post-item
 import styles from './PostPage.module.scss';
+import images from '../../assets/images';
 import moment from 'moment';
 
 import Tippy from '@tippyjs/react';
@@ -10,12 +11,12 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 //React library
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../../redux/actions/postActions';
 
 //materialUI library
-import CircularProgress from '@mui/material/CircularProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 
 //Component
 import Card from '../../components/Card/Card';
@@ -25,9 +26,17 @@ import { SearchIcon } from '../../components/Icon';
 
 const cx = classNames.bind(styles);
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
 export default function NutritionPost() {
-    const { posts } = useSelector((state) => state.posts);
+    const { posts, isLoading } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
+    const query = useQuery();
+
+    //paginate
+    const page = query.get('page') || 1;
 
     useEffect(() => {
         dispatch(getPosts());
@@ -72,20 +81,32 @@ export default function NutritionPost() {
                                         </Link>
                                     </Tippy>
                                 </div>
-                                {!postFilters.length ? (
-                                    <CircularProgress />
+                                {!postFilters?.length && !isLoading ? (
+                                    <div className={cx('noPost')}>
+                                        <img
+                                            className={cx('noPost-img')}
+                                            src={images.postNotFound}
+                                            alt="postNotFound"
+                                        />
+                                        <h2 className={cx('noPost-content')}>
+                                            Rất tiếc! Không có bài viết được tìm thấy...
+                                        </h2>
+                                    </div>
+                                ) : isLoading ? (
+                                    <LinearProgress className={cx('linearProgress')} />
                                 ) : (
                                     postFilters.map((postFilter) => (
-                                        <Card
-                                            key={postFilter._id}
-                                            className="horizontal-card"
-                                            src={postFilter.image}
-                                            alt={postFilter.title}
-                                            title={postFilter.title}
-                                            desc={postFilter.description}
-                                            type={`#${postFilter.type}`}
-                                            createAt={moment(postFilter.createdAt).format('DD/MM/YYYY')}
-                                        />
+                                        <Link key={postFilter._id} to={`/posts/${postFilter.type}/${postFilter._id}`}>
+                                            <Card
+                                                className="horizontal-card"
+                                                src={postFilter.image}
+                                                alt={postFilter.title}
+                                                title={postFilter.title}
+                                                desc={postFilter.description}
+                                                type={`#${postFilter.type}`}
+                                                createAt={moment(postFilter.createdAt).format('DD/MM/YYYY')}
+                                            />
+                                        </Link>
                                     ))
                                 )}
                             </div>

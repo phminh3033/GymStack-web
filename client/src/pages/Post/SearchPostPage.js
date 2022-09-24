@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'; //Allows to write class names with '-' => Ex: post-item
 import styles from './PostPage.module.scss';
+import images from '../../assets/images';
 import moment from 'moment';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,17 +13,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../../redux/actions/postActions';
 
 //materialUI library
-import CircularProgress from '@mui/material/CircularProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 
 //Component
 import Card from '../../components/Card/Card';
-import Paginate from '../../components/Paginate/Paginate';
 import Search from '../../components/Search/Search';
 
 const cx = classNames.bind(styles);
 
 export default function SearchPostPage() {
-    const { posts } = useSelector((state) => state.posts);
+    const { posts, isLoading } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -41,8 +41,13 @@ export default function SearchPostPage() {
                             <h2 className={cx('heading')}>TÌM KIẾM BÀI VIẾT HỮU ÍCH</h2>
                             <Search navigatePath="/posts" />
                         </div>
-                        {!posts?.length ? (
-                            <CircularProgress />
+                        {!posts?.length && !isLoading ? (
+                            <div className={cx('noPost')}>
+                                <img className={cx('noPost-img')} src={images.postNotFound} alt="postNotFound" />
+                                <h2 className={cx('noPost-content')}>Rất tiếc! Không có bài viết được tìm thấy...</h2>
+                            </div>
+                        ) : isLoading ? (
+                            <LinearProgress className={cx('linearProgress')} />
                         ) : (
                             posts?.map((post) => (
                                 <Link key={post._id} to={`/posts/${post.type}/${post._id}`}>

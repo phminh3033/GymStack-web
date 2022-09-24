@@ -17,7 +17,7 @@ export const getPost = async (req, res) => {
 export const getPosts = async (req, res) => {
     const { page } = req.query;
     try {
-        const LIMIT = 6;
+        const LIMIT = 8;
         const startIndex = (Number(page) - 1) * LIMIT; // get the starting index of every page
         const total = await PostsModel.countDocuments({});
         const posts = await PostsModel.find()
@@ -37,6 +37,16 @@ export const getPosts = async (req, res) => {
     }
 };
 
+// export const getRecommendPosts = async (req, res) => {
+//     const { type } = req.params;
+//     try {
+//         const post = await PostsModel.find(type);
+//         res.status(200).json(post);
+//     } catch (err) {
+//         res.status(404).json({ errorGetRecommendPostsController: err.message });
+//     }
+// };
+
 export const getPostsBySearch = async (req, res) => {
     const { searchQuery } = req.query;
     try {
@@ -44,7 +54,7 @@ export const getPostsBySearch = async (req, res) => {
         const posts = await PostsModel.find({ title: title });
         res.json({ data: posts });
     } catch (err) {
-        res.status(404).json({ errorGetPostsBySearch: err.message });
+        res.status(404).json({ errorGetPostsBySearchController: err.message });
     }
 };
 

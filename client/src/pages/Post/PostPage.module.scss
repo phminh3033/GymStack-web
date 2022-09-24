@@ -2,7 +2,7 @@
 
 .wrapper {
     width: 100%;
-    min-height: 100vh;
+    min-height: 80vh;
     margin-top: var(--header-height);
 }
 
@@ -72,6 +72,22 @@
     .content {
         margin-left: 16px;
     }
+}
+
+.noPost {
+    text-align: center;
+    margin: 40px 0 16px;
+    .noPost-img {
+        width: 40%;
+        margin-bottom: 24px;
+    }
+    .noPost-content {
+        margin-top: 16px;
+    }
+}
+
+.linearProgress {
+    margin: 8px 0 24px;
 }
 
 .row-paginate {

@@ -16,8 +16,9 @@ import authUser from "../middleware/authUser.js";
 const router = express.Router();
 
 router.get("/", getPosts);
-router.get("/search", getPostsBySearch);
 router.get("/:type/:id", getPost);
+router.get("/search", getPostsBySearch);
+// router.get("/:type", getRecommendPosts);
 
 router.post("/", authAdmin, createPost);
 router.patch("/:id", authAdmin, updatePost);

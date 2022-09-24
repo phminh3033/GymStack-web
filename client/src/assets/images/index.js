@@ -7,8 +7,9 @@ const images = {
     slider1: require('../../assets/images/slider1.jpg'),
     slider2: require('../../assets/images/slider2.jpg'),
     footer1: require('../../assets/images/footer1.png'),
-    ava1: require('../../assets/images/ava1.jpg'),
 
+    //postPage
+    postNotFound: require('../../assets/images/page-lost.png'),
     //admin
     header_admin: require('../../assets/images/header_admin.png'),
 };
