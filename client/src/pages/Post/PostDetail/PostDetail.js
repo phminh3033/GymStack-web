@@ -36,7 +36,7 @@ export default function PostDetail() {
     //Recommended Posts
     useEffect(() => {
         if (post) {
-            dispatch(getPostsBySearch({ type: post?.type }));
+            dispatch(getPostsBySearch({ searchQuery: 'none', type: post?.type }));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [post]);
@@ -50,24 +50,21 @@ export default function PostDetail() {
     // }
 
     const Likes = () => {
-        // eslint-disable-next-line array-callback-return
-        posts?.map((post) => {
-            if (post.likes.length > 0) {
-                return post.likes.find((like) => like === (user?.result?.sub || user?.result?._id)) ? (
-                    <>
-                        <Favorite className={cx('icon-heart')} />
-                        {post.likes.length > 2
-                            ? `Bạn và ${post.likes.length - 1} người khác`
-                            : `${post.likes.length} đã thích`}
-                    </>
-                ) : (
-                    <>
-                        <FavoriteBorder className={cx('icon-heart')} />
-                        {post.likes.length}
-                    </>
-                );
-            }
-        });
+        if (post.likes.length > 0) {
+            return post.likes.find((like) => like === (user?.result?.sub || user?.result?._id)) ? (
+                <>
+                    <Favorite className={cx('icon-heart')} />
+                    {post.likes.length > 2
+                        ? `Bạn và ${post.likes.length - 1} người khác`
+                        : `${post.likes.length} đã thích`}
+                </>
+            ) : (
+                <>
+                    <FavoriteBorder className={cx('icon-heart')} />
+                    {post.likes.length}
+                </>
+            );
+        }
         return (
             <>
                 <FavoriteBorder className={cx('icon-heart')} />0
@@ -75,21 +72,31 @@ export default function PostDetail() {
         );
     };
 
-    const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
+    const recommendedIDPosts = posts.filter(({ _id }) => _id !== post._id);
+    const recommendedPosts = recommendedIDPosts.filter(({ type }) => type === post.type);
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('grid', 'wide')}>
                 <div className={cx('top-heading')}>
-                    <Link to="/posts" className={cx('heading')}>
+                    <Link to="/posts" className={cx('heading', 'heading-link')}>
                         BÀI VIẾT HỮU ÍCH
                     </Link>
                     <div className={cx('sub-heading')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faAngleRight} />
-                        <span className={cx('content')}>
-                            {/* {post.type } */}
-                            Các bài tập
-                        </span>
+                        {post.type === 'exercise' ? (
+                            <Link to="/posts/exercise" className={cx('content-link')}>
+                                Các bài tập
+                            </Link>
+                        ) : post.type === 'knowledge' ? (
+                            <Link to="/posts/knowledge" className={cx('content-link')}>
+                                Kiến thức về sức khỏe
+                            </Link>
+                        ) : (
+                            <Link to="/posts/nutrition" className={cx('content-link')}>
+                                Dinh dưỡng / Thực phẩm
+                            </Link>
+                        )}
                     </div>
                     <div className={cx('sub-heading')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faAngleRight} />
@@ -135,10 +142,10 @@ export default function PostDetail() {
                                 </div>
                             </div>
                         </div>
+                        <h2 className={cx('heading')}>Có thể bạn cũng quan tâm</h2>
                         <div className={cx('row')}>
                             {recommendedPosts.length && (
                                 <>
-                                    <h2>Có thể bạn cũng quan tâm</h2>
                                     {recommendedPosts.map((recommendedPost) => (
                                         <div key={recommendedPost._id} className={cx('col', 'l-3', 'm-6', 'c-12')}>
                                             <Link to={`/posts/${recommendedPost.type}/${recommendedPost._id}`}>

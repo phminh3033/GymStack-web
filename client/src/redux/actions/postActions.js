@@ -1,8 +1,8 @@
 import * as api from '../../api';
 import {
     FETCH_ALL_POSTS,
+    FETCH_ALL_POSTS_NO_PAGINATE,
     FETCH_POST,
-    FETCH_RECOMMEND_POSTS,
     FETCH_BY_SEARCH,
     CREATE_POST,
     UPDATE_POST,
@@ -19,6 +19,17 @@ export const getPost = (id, type) => async (dispatch) => {
         dispatch({ type: END_LOADING });
     } catch (err) {
         console.log({ errorGetPostAction: err.message });
+    }
+};
+
+export const getPostsNoPaginate = () => async (dispatch) => {
+    try {
+        dispatch({ type: START_LOADING });
+        const { data } = await api.fetchPostsNoPaginate();
+        dispatch({ type: FETCH_ALL_POSTS_NO_PAGINATE, payload: data });
+        dispatch({ type: END_LOADING });
+    } catch (err) {
+        console.log({ errorGetPostsNoPaginateAction: err.message });
     }
 };
 
@@ -59,10 +70,10 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     }
 };
 
-export const createPost = (post, navigate) => async (dispatch) => {
+export const createPost = (post) => async (dispatch) => {
     try {
         const { data } = await api.createPost(post);
-        navigate('/admin/posts');
+        // navigate('/admin/posts?');
         dispatch({ type: CREATE_POST, payload: data });
     } catch (err) {
         console.log({ errorCreatePostAction: err.message });

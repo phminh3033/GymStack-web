@@ -36,7 +36,6 @@ function Search({ navigatePath }) {
     const handleKeyPress = (e) => {
         if (e.keyCode === 13) {
             searchPosts();
-            console.log(search);
         }
     };
     return (

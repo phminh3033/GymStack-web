@@ -27,6 +27,12 @@
     margin-bottom: 0;
 }
 
+.heading.heading-link {
+    &:hover {
+        color: var(--primary-color);
+    }
+}
+
 .sub-heading {
     font-size: 1.5rem;
     font-weight: 600;
@@ -36,6 +42,13 @@
 
     .content {
         margin-left: 16px;
+    }
+
+    .content-link {
+        margin-left: 16px;
+        &:hover {
+            color: var(--primary-color);
+        }
     }
 }
 

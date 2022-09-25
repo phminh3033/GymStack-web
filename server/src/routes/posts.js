@@ -3,6 +3,7 @@ import express from "express";
 import {
     getPost,
     getPosts,
+    getPostsNoPaginate,
     getPostsBySearch,
     createPost,
     updatePost,
@@ -16,9 +17,10 @@ import authUser from "../middleware/authUser.js";
 const router = express.Router();
 
 router.get("/", getPosts);
+router.get("/no-paginate", getPostsNoPaginate);
+// router.get("/:type", getRecommendPosts);
 router.get("/:type/:id", getPost);
 router.get("/search", getPostsBySearch);
-// router.get("/:type", getRecommendPosts);
 
 router.post("/", authAdmin, createPost);
 router.patch("/:id", authAdmin, updatePost);

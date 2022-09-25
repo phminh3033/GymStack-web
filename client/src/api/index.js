@@ -20,6 +20,7 @@ API.interceptors.request.use(
 );
 
 //endpoint
+export const fetchPostsNoPaginate = () => API.get(`/posts/no-paginate`);
 export const fetchPost = (id, type) => API.get(`/posts/${type}/${id}`);
 export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
 // export const fetchRecommendPosts = (type) => API.get(`/posts/${type}`);

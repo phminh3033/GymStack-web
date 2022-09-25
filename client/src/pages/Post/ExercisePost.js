@@ -13,11 +13,11 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPosts } from '../../redux/actions/postActions';
+import { getPostsNoPaginate } from '../../redux/actions/postActions';
 
 //materialUI library
 import LinearProgress from '@mui/material/LinearProgress';
-import { Pagination, PaginationItem } from '@mui/material';
+// import { Pagination, PaginationItem } from '@mui/material';
 
 //Component
 import Card from '../../components/Card/Card';
@@ -28,22 +28,21 @@ import { SearchIcon } from '../../components/Icon';
 
 const cx = classNames.bind(styles);
 
-function useQuery() {
-    return new URLSearchParams(useLocation().search);
-}
+// function useQuery() {
+//     return new URLSearchParams(useLocation().search);
+// }
 
 export default function ExercisePost() {
     const { posts, isLoading } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
-    const query = useQuery();
+    // const query = useQuery();
 
     //paginate
-    const page = query.get('page') || 1;
+    // const page = query.get('page') || 1;
 
     useEffect(() => {
-        dispatch(getPosts(page));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [page]);
+        dispatch(getPostsNoPaginate());
+    }, [dispatch]);
 
     const routePost = {
         knowledge: '/posts/knowledge',
@@ -70,7 +69,7 @@ export default function ExercisePost() {
                             <div className={cx('right')}>
                                 <div className={cx('top-heading')}>
                                     <div className={cx('info-heading')}>
-                                        <Link to="/posts" className={cx('heading')}>
+                                        <Link to="/posts" className={cx('heading', 'heading-link')}>
                                             BÀI VIẾT HỮU ÍCH
                                         </Link>
                                         <div className={cx('sub-heading')}>
@@ -108,11 +107,12 @@ export default function ExercisePost() {
                                                 desc={postFilter.description}
                                                 type={`#${postFilter.type}`}
                                                 createAt={moment(postFilter.createdAt).format('DD/MM/YYYY')}
+                                                likeCount={postFilter.likes.length < 1 ? 0 : postFilter.likes.length}
                                             />
                                         </Link>
                                     ))
                                 )}
-                                <div className={cx('paginate')}>
+                                {/* <div className={cx('paginate')}>
                                     <Pagination
                                         className={cx('pagination')}
                                         count={Math.ceil(postFilters.length / 6)}
@@ -128,7 +128,7 @@ export default function ExercisePost() {
                                             />
                                         )}
                                     />
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

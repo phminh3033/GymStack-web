@@ -10,7 +10,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPosts } from '../../redux/actions/postActions';
+import { getPostsNoPaginate } from '../../redux/actions/postActions';
 
 //materialUI library
 import LinearProgress from '@mui/material/LinearProgress';
@@ -26,7 +26,7 @@ export default function SearchPostPage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getPosts());
+        dispatch(getPostsNoPaginate());
     }, [dispatch]);
     return (
         <div className={cx('wrapper')}>
@@ -59,8 +59,7 @@ export default function SearchPostPage() {
                                         desc={post.description}
                                         type={`#${post.type}`}
                                         createAt={moment(post.createdAt).format('DD/MM/YYYY')}
-                                        idPost={post._id}
-                                        likeCount={post.likes.length < 1 ? 0 : post.likes}
+                                        likeCount={post.likes.length < 1 ? 0 : post.likes.length}
                                     />
                                 </Link>
                             ))

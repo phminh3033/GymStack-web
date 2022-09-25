@@ -14,6 +14,17 @@ export const getPost = async (req, res) => {
     }
 };
 
+export const getPostsNoPaginate = async (req, res) => {
+    try {
+        const posts = await PostsModel.find().sort({ _id: -1 });
+        res.status(200).json(posts);
+    } catch (err) {
+        res.status(404).json({
+            errorGetPostsNoPaginateController: err.message,
+        });
+    }
+};
+
 export const getPosts = async (req, res) => {
     const { page } = req.query;
     try {
@@ -40,8 +51,8 @@ export const getPosts = async (req, res) => {
 // export const getRecommendPosts = async (req, res) => {
 //     const { type } = req.params;
 //     try {
-//         const post = await PostsModel.find(type);
-//         res.status(200).json(post);
+//         const posts = await PostsModel.find(type);
+//         res.status(200).json(posts);
 //     } catch (err) {
 //         res.status(404).json({ errorGetRecommendPostsController: err.message });
 //     }

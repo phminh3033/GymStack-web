@@ -1,7 +1,7 @@
 import {
     FETCH_POST,
     FETCH_ALL_POSTS,
-    FETCH_RECOMMEND_POSTS,
+    FETCH_ALL_POSTS_NO_PAGINATE,
     FETCH_BY_SEARCH,
     CREATE_POST,
     UPDATE_POST,
@@ -25,12 +25,14 @@ export default function postsReducers(state = { isLoading: true, posts: [] }, ac
                 currentPage: action.payload.currentPage,
                 numberOfPages: action.payload.numberOfPages,
             };
+        case FETCH_ALL_POSTS_NO_PAGINATE:
+            return { ...state, posts: action.payload };
         case FETCH_POST:
             return { ...state, post: action.payload };
         case FETCH_BY_SEARCH:
             return { ...state, posts: action.payload };
         // case FETCH_RECOMMEND_POSTS:
-        //     return { ...state, post: action.payload };
+        //     return { ...state, posts: action.payload };
         case CREATE_POST:
             return { ...state, posts: [...state.posts, action.payload] };
         case UPDATE_POST:

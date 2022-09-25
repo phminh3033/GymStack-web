@@ -8,11 +8,10 @@ import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 import Favorite from '@mui/icons-material/Favorite';
 
 import { useDispatch } from 'react-redux';
-import { likePost } from '../../redux/actions/postActions';
 
 const cx = classNames.bind(styles);
 
-export default function Card({ src, alt, type, createAt, title, desc, className, idPost, likeCount }) {
+export default function Card({ src, alt, type, createAt, title, desc, className, likeCount }) {
     const dispatch = useDispatch();
     return (
         <div className={cx('wrapper', className)}>
@@ -27,7 +26,7 @@ export default function Card({ src, alt, type, createAt, title, desc, className,
                     </div>
                     <h2 className={cx('title')}>{title}</h2>
                     <p className={cx('desc')}>{desc}</p>
-                    <button className={cx('like-btn')} onClick={() => dispatch(likePost(idPost))}>
+                    <button className={cx('like-btn')}>
                         <Favorite className={cx('like-icon')} />
                         {likeCount}
                     </button>

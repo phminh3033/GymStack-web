@@ -89,8 +89,7 @@ export default function PostPage() {
                                             desc={post.description}
                                             type={`#${post.type}`}
                                             createAt={moment(post.createdAt).format('DD/MM/YYYY')}
-                                            idPost={post._id}
-                                            likeCount={post.likes.length < 1 ? 0 : post.likes}
+                                            likeCount={post.likes.length < 1 ? 0 : post.likes.length}
                                         />
                                     </Link>
                                 ))

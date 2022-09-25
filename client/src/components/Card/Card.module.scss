@@ -81,7 +81,7 @@
     
 }
 
-//sidebar PostPage
+//sidebar PostPage horizontal-card
 .wrapper.horizontal-card {
     height: 200px;
     .card {
@@ -131,18 +131,21 @@
             margin-left: auto;
             border: none;
             background-color: #fff;
+            color: #b71c1c;
             .like-icon {
                 margin-right: 8px;
                 font-size: 2rem;
             }
-
-            &:hover {
-                color: #b71c1c;
-            }
         }
     }
+}
 
-
+//sidebar PostPage recommended-card
+.wrapper.recommended-card {
+    height: auto;
+    .card-btn {
+        display: none;
+    }
 }
 
 
