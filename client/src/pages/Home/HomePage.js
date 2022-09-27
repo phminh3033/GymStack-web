@@ -7,7 +7,6 @@ import Grow from '@mui/material/Grow';
 import images from '../../assets/images';
 import Slider from '../../components/Slider/Slider';
 import Post from '../../components/Post/Post';
-import Member from '../../components/Member/Member';
 import Parallax from '../../components/Parallax/Parallax';
 
 const cx = classNames.bind(styles);
@@ -115,7 +114,6 @@ export default function HomePage() {
                 </div>
             </div>
             <Post />
-            <Member />
             <Parallax />
         </>
     );

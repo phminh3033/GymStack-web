@@ -7,12 +7,12 @@ import Grow from '@mui/material/Grow';
 //react library
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getUsers, deleteUser } from '../../../redux/actions/authUserActions';
+// import { getAdmins, deleteUser } from '../../../redux/actions/authUserActions';
 
 //react-bootstrap library
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-
-import { getUsers, deleteUser } from '../../../redux/actions/authUserActions';
 
 //components
 import Search from '../../../components/Search/Search';
@@ -26,6 +26,8 @@ export default function UsersAdmin() {
     useEffect(() => {
         dispatch(getUsers());
     }, [dispatch]);
+
+    console.log(users);
 
     return (
         <div className={cx('wrapper')}>

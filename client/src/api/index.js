@@ -41,6 +41,9 @@ export const fetchUser = (id) => API.get(`/user/${id}`);
 //Admins
 export const signInAdmin = (formDataAdmin) => API.post('/admin/signin', formDataAdmin);
 export const signUpAdmin = (formDataAdmin) => API.post('/admin/signup', formDataAdmin);
+export const fetchAdmins = () => API.get(`/admin/admins`);
+export const fetchAdminsBySearch = (searchQuery) =>
+    API.get(`/admin/admins/search?searchQuery=${searchQuery || 'none'}`);
 //Admins - User
 export const fetchUsers = () => API.get(`/admin/users`);
 export const fetchUsersBySearch = (searchQuery) => API.get(`/admin/users/search?searchQuery=${searchQuery || 'none'}`);

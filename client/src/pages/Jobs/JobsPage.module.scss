@@ -1,0 +1,60 @@
+@import '../../gird.module.scss';
+
+.wrapper {
+    width: 100%;
+    margin-top: var(--header-height);
+    margin: 60px 0 30px;
+}
+
+.row-jobPage {
+    padding: 40px 0;
+}
+
+.top {
+    margin-bottom: 60px;
+    .heading {
+        font-size: 4.5rem;
+        font-weight: 700;
+        margin-bottom: 18px;
+    } 
+    .content {
+        font-size: 2rem;
+        text-align: justify;
+    }
+}
+
+.body {
+    .heading {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 18px;
+    }
+    .wrap-job {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid #e8e8e8;
+        border-radius: 16px;
+        padding: 24px;
+        margin: 12px 0;
+        transition: 0.25s;
+
+        .job-heading {
+            font-size: 2.5rem;
+            font-weight: 500;
+        }
+
+        .job-action {
+            padding: 5px 10px;
+            color: var(--white-color);
+            background-color: var(--primary-color);
+            border-radius: 5px;
+
+        }
+        &:hover {
+            cursor: pointer;
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+        }
+    }
+}

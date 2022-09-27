@@ -92,7 +92,8 @@ export const getUser = async (req, res) => {
 
 export const getUsers = async (req, res) => {
     try {
-        const users = await UsersModel.find().sort({ _id: -1 });
+        const users = await UsersModel.find();
+        console.log(users);
         res.status(200).json(users);
     } catch (err) {
         res.status(404).json({ errorGetUsersController: err.message });

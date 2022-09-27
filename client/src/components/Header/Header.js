@@ -62,9 +62,10 @@ export default function Header({ handleOpenMenu }) {
                 </Link>
 
                 <Navbar>
+                    <NavItem title="GIỚI THIỆU" to="/introduce" />
                     <NavItem title="BÀI VIẾT HỮU ÍCH" to="/posts" />
                     <NavItem title="BÀI TẬP" to="/exercise" />
-                    <NavItem title="HUẤN LUYỆN VIÊN" to="/trainer" />
+                    <NavItem title="HỖ TRỢ" to="/support" />
                 </Navbar>
 
                 {user ? (

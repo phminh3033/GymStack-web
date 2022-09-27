@@ -6,7 +6,13 @@ import HomePage from '../pages/Home/HomePage';
 import LoginPage from '../pages/Login/LoginPage';
 import RegisterPage from '../pages/Register/RegisterPage';
 import ExercisePage from '../pages/Exercise/ExercisePage';
-import TrainerPage from '../pages/Trainer/TrainerPage';
+import IntroducePage from '../pages/Introduce/IntroducePage';
+import JobsPage from '../pages/Jobs/JobsPage';
+import SupportPage from '../pages/Support/SupportPage';
+import ContactPage from '../pages/Support/Contact/ContactPage';
+import PrivacyPage from '../pages/Support/Privacy/PrivacyPage';
+import TermsPage from '../pages/Support/Terms/TermsPage';
+
 //PostPage
 import PostPage from '../pages/Post/PostPage';
 import KnowledgePost from '../pages/Post/KnowledgePost';
@@ -18,6 +24,7 @@ import SearchPostPage from '../pages/Post/SearchPostPage';
 //Admin pages
 import LoginAdminPage from '../pages/Login/LoginAdminPage';
 import DashboardPage from '../pages/Admin/Dashboard/DashboardPage';
+import AdminsAdmin from '../pages/Admin/AdminsAdmin/AdminsAdmin';
 import UsersAdmin from '../pages/Admin/UsersAdmin/UsersAdmin';
 import PostAdminPage from '../pages/Admin/PostAdmin/PostAdminPage';
 
@@ -27,7 +34,12 @@ const publicRoutes = [
     { path: '/login', component: LoginPage },
     { path: '/register', component: RegisterPage },
     { path: '/exercise', component: ExercisePage },
-    { path: '/trainer', component: TrainerPage },
+    { path: '/introduce', component: IntroducePage },
+    { path: '/careers', component: JobsPage },
+    { path: '/support', component: SupportPage },
+    { path: '/contact-us', component: ContactPage },
+    { path: '/privacy', component: PrivacyPage },
+    { path: '/terms', component: TermsPage },
 
     //Posts Pages
     { path: '/posts', component: PostPage },
@@ -40,7 +52,7 @@ const publicRoutes = [
     //Admin routes
     { path: '/admin', component: LoginAdminPage, layout: null },
     { path: '/admin/dashboard', component: DashboardPage, layout: AdminLayout },
-    { path: '/admin/admins', component: UsersAdmin, layout: AdminLayout },
+    { path: '/admin/admins', component: AdminsAdmin, layout: AdminLayout },
     { path: '/admin/users', component: UsersAdmin, layout: AdminLayout },
     { path: '/admin/posts', component: PostAdminPage, layout: AdminLayout },
     { path: '/admin/posts/search', component: PostAdminPage, layout: AdminLayout },

@@ -1,5 +1,11 @@
 import * as api from '../../api';
-import { AUTH_ADMIN } from '../../constants/actionTypes';
+import {
+    AUTH_ADMIN,
+    FETCH_ALL_ADMINS,
+    FETCH_ADMINS_BY_SEARCH,
+    START_LOADING,
+    END_LOADING,
+} from '../../constants/actionTypes';
 
 export const signInAdmin = (formDataAdmin, navigate) => async (dispatch) => {
     try {
@@ -23,36 +29,36 @@ export const signUpAdmin = (formDataAdmin, navigate) => async (dispatch) => {
     }
 };
 
-// export const getUsers = () => async (dispatch) => {
-//     try {
-//         dispatch({ type: START_LOADING });
-//         const { data } = await api.fetchUsers();
-//         console.log(data);
-//         dispatch({ type: FETCH_ALL_USERS, payload: data });
-//         dispatch({ type: END_LOADING });
-//     } catch (err) {
-//         console.log({ errorGetUsersAction: err.message });
-//     }
-// };
+export const getAdmins = () => async (dispatch) => {
+    try {
+        dispatch({ type: START_LOADING });
+        const { data } = await api.fetchAdmins();
+        console.log(data);
+        dispatch({ type: FETCH_ALL_ADMINS, payload: data });
+        dispatch({ type: END_LOADING });
+    } catch (err) {
+        console.log({ errorGetAdminsAction: err.message });
+    }
+};
 
-// export const getUsersBySearch = (searchQuery) => async (dispatch) => {
-//     try {
-//         dispatch({ type: START_LOADING });
-//         const {
-//             data: { data },
-//         } = await api.fetchUsersBySearch(searchQuery);
-//         dispatch({ type: FETCH_USERS_BY_SEARCH, payload: data });
-//         dispatch({ type: END_LOADING });
-//     } catch (err) {
-//         console.log({ errorGetUsersBySearchAction: err.message });
-//     }
-// };
+export const getAdminsBySearch = (searchQuery) => async (dispatch) => {
+    try {
+        dispatch({ type: START_LOADING });
+        const {
+            data: { data },
+        } = await api.fetchAdminsBySearch(searchQuery);
+        dispatch({ type: FETCH_ADMINS_BY_SEARCH, payload: data });
+        dispatch({ type: END_LOADING });
+    } catch (err) {
+        console.log({ errorGetAdminsBySearchAction: err.message });
+    }
+};
 
-// export const deleteUser = (id) => async (dispatch) => {
+// export const deleteAdmin = (id) => async (dispatch) => {
 //     try {
-//         await api.deleteUser(id);
-//         dispatch({ type: DELETE_USER, payload: id });
+//         await api.deleteAdmin(id);
+//         dispatch({ type: DELETE_ADMIN, payload: id });
 //     } catch (err) {
-//         console.log({ errorDeleteUserAction: err.message });
+//         console.log({ errorDeleteAdminAction: err.message });
 //     }
 // };

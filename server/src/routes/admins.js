@@ -1,6 +1,11 @@
 import express from "express";
 
-import { signInAdmin, signUpAdmin } from "../controllers/AdminController.js";
+import {
+    signInAdmin,
+    signUpAdmin,
+    getAdmins,
+    getAdminsBySearch,
+} from "../controllers/AdminController.js";
 
 import {
     getUsers,
@@ -11,7 +16,10 @@ import {
 const router = express.Router();
 
 // "/admin"
-router.post("/users", getUsers);
+router.get("/admins", getAdmins);
+router.get("/admins/search", getAdminsBySearch);
+
+router.get("/users", getUsers);
 router.get("/users/search", getUsersBySearch);
 router.delete("/users/:id", deleteUser);
 

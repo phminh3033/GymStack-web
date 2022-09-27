@@ -17,6 +17,10 @@ export const END_LOADING = 'END_LOADING';
 //Admin
 export const AUTH_ADMIN = 'AUTH_ADMIN';
 export const LOGOUT_ADMIN = 'LOGOUT_ADMIN';
+
+export const FETCH_ALL_ADMINS = 'FETCH_ALL_ADMINS';
+export const FETCH_ADMINS_BY_SEARCH = 'FETCH_ADMINS_BY_SEARCH';
+
 export const FETCH_ALL_USERS = 'FETCH_ALL_USERS';
 export const FETCH_USERS_BY_SEARCH = 'FETCH_USERS_BY_SEARCH';
 export const DELETE_USER = 'DELETE_USER';

@@ -29,10 +29,10 @@ export default function Footer() {
                                 <h2 className={cx('heading')}>Về chúng tôi</h2>
                                 <ul className={cx('list')}>
                                     <li>
-                                        <a href="/">Giới thiệu</a>
+                                        <a href="/introduce">Giới thiệu</a>
                                     </li>
                                     <li>
-                                        <a href="/">Cơ hội việc làm</a>
+                                        <a href="/careers">Cơ hội việc làm</a>
                                     </li>
                                 </ul>
                             </div>
@@ -42,13 +42,13 @@ export default function Footer() {
                                 <h2 className={cx('heading')}>HỖ TRỢ</h2>
                                 <ul className={cx('list')}>
                                     <li>
-                                        <a href="/">Liên hệ</a>
+                                        <a href="/contact-us">Liên hệ</a>
                                     </li>
                                     <li>
-                                        <a href="/">Bảo mật</a>
+                                        <a href="/privacy">Bảo mật</a>
                                     </li>
                                     <li>
-                                        <a href="/">Điều khoản</a>
+                                        <a href="/terms">Điều khoản</a>
                                     </li>
                                 </ul>
                             </div>

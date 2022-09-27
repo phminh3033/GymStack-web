@@ -76,3 +76,24 @@ export const signUpAdmin = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+export const getAdmins = async (req, res) => {
+    try {
+        const admins = await AdminsModel.find();
+        console.log("admins", admins);
+        res.status(200).json(admins);
+    } catch (err) {
+        res.status(404).json({ errorGetAdminsController: err.message });
+    }
+};
+
+export const getAdminsBySearch = async (req, res) => {
+    const { searchQuery } = req.query;
+    try {
+        const name = new RegExp(searchQuery, "i"); //flag ignore -> Test test TEST -> test
+        const admins = await AdminsModel.find({ name: name });
+        res.json({ data: admins });
+    } catch (err) {
+        res.status(404).json({ errorGetAdminsBySearchController: err.message });
+    }
+};

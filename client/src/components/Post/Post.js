@@ -27,20 +27,22 @@ export default function Post() {
             <div className={cx('grid', 'wide')}>
                 <div className={cx('post-heading')}>
                     <h1 className={cx('heading')}>BÀI VIẾT HỮU ÍCH</h1>
-                    <Link to="/posts" className={cx('more-btn')}>
+                    <a href="/posts" className={cx('more-btn')}>
                         Xem tất cả
-                    </Link>
+                    </a>
                 </div>
                 <div className={cx('row')}>
                     {posts?.map((post) => (
                         <div key={post._id} className={cx('col', 'l-3', 'm-6', 'c-12')}>
-                            <Card
-                                src={post.image}
-                                alt={post.title}
-                                title={post.title}
-                                desc={post.description}
-                                createAt={moment(post.createdAt).format('DD/MM/YYYY')}
-                            />
+                            <a key={post._id} href={`/posts/${post.type}/${post._id}`}>
+                                <Card
+                                    src={post.image}
+                                    alt={post.title}
+                                    title={post.title}
+                                    desc={post.description}
+                                    createAt={moment(post.createdAt).format('DD/MM/YYYY')}
+                                />
+                            </a>
                         </div>
                     ))}
                 </div>
