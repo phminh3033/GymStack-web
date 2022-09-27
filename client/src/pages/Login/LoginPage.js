@@ -54,6 +54,7 @@ export default function LoginPage() {
         setFormDataUser({ ...formDataUser, [e.target.name]: e.target.value });
     };
 
+    //gg login
     const googleSuccess = async (res) => {
         // console.log(res);
         // console.log(res.credential);
@@ -62,7 +63,7 @@ export default function LoginPage() {
         const token = res?.credential;
         try {
             dispatch({ type: 'AUTH_USER', data: { result, token } });
-            navigate('/');
+            navigate(-1);
         } catch (err) {
             console.log({ error: err.message });
         }

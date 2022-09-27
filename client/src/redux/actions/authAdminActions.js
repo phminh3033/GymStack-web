@@ -22,3 +22,37 @@ export const signUpAdmin = (formDataAdmin, navigate) => async (dispatch) => {
         console.log({ errorSignUpAdminAction: err.message });
     }
 };
+
+// export const getUsers = () => async (dispatch) => {
+//     try {
+//         dispatch({ type: START_LOADING });
+//         const { data } = await api.fetchUsers();
+//         console.log(data);
+//         dispatch({ type: FETCH_ALL_USERS, payload: data });
+//         dispatch({ type: END_LOADING });
+//     } catch (err) {
+//         console.log({ errorGetUsersAction: err.message });
+//     }
+// };
+
+// export const getUsersBySearch = (searchQuery) => async (dispatch) => {
+//     try {
+//         dispatch({ type: START_LOADING });
+//         const {
+//             data: { data },
+//         } = await api.fetchUsersBySearch(searchQuery);
+//         dispatch({ type: FETCH_USERS_BY_SEARCH, payload: data });
+//         dispatch({ type: END_LOADING });
+//     } catch (err) {
+//         console.log({ errorGetUsersBySearchAction: err.message });
+//     }
+// };
+
+// export const deleteUser = (id) => async (dispatch) => {
+//     try {
+//         await api.deleteUser(id);
+//         dispatch({ type: DELETE_USER, payload: id });
+//     } catch (err) {
+//         console.log({ errorDeleteUserAction: err.message });
+//     }
+// };

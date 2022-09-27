@@ -1,0 +1,28 @@
+.warning {
+    font-style: italic
+}
+
+.wrap-comment {
+    margin-top: 16px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.comment {
+    display: flex;
+    margin: 16px 0;
+}
+
+.comment-ava {
+    margin-right: 20px;
+}
+
+.comment-detail {
+    background-color: rgba(109, 109, 109, 0.2);
+    border-radius: 8px;
+    padding: 8px 12px;
+
+    .comment-name {
+        font-weight: 700;
+    }
+}

@@ -3,7 +3,7 @@ import styles from './PostDetail.module.scss';
 import moment from 'moment';
 
 //React library
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getPost, getPostsBySearch, likePost } from '../../../redux/actions/postActions';
@@ -13,20 +13,24 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 //materialUI library
 import LinearProgress from '@mui/material/LinearProgress';
+import Divider from '@mui/material/Divider';
 // import Grow from '@mui/material/Grow';
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
 //component
 import Card from '../../../components/Card/Card';
+import Comment from '../../../components/Comment/Comment';
 
 const cx = classNames.bind(styles);
 
 export default function PostDetail() {
     const user = JSON.parse(localStorage.getItem('profileUser'));
     const { post, posts, isLoading } = useSelector((state) => state.posts);
+    const [likes, setLikes] = useState(post?.likes);
     const dispatch = useDispatch();
     const { id, type } = useParams();
+    const userId = user?.result?.sub || user?.result?._id;
 
     useEffect(() => {
         dispatch(getPost(id, type));
@@ -44,24 +48,28 @@ export default function PostDetail() {
     if (!post) {
         return null;
     }
-
-    // if (isLoading) {
-    //     return <LinearProgress />;
-    // }
+    const handleLikePost = async () => {
+        dispatch(likePost(post._id));
+        if (post.likes.find((like) => like === userId)) {
+            //if the user has liked the post and user clicks the button again that means that they want to unlike it
+            setLikes(post.likes.filter((id) => id !== userId));
+        } else {
+            //set like when user don't like
+            setLikes([...post.likes, userId]);
+        }
+    };
 
     const Likes = () => {
-        if (post.likes.length > 0) {
-            return post.likes.find((like) => like === (user?.result?.sub || user?.result?._id)) ? (
+        if (likes.length > 0) {
+            return likes.find((like) => like === userId) ? (
                 <>
                     <Favorite className={cx('icon-heart')} />
-                    {post.likes.length > 2
-                        ? `Bạn và ${post.likes.length - 1} người khác`
-                        : `${post.likes.length} đã thích`}
+                    {likes.length}
                 </>
             ) : (
                 <>
                     <FavoriteBorder className={cx('icon-heart')} />
-                    {post.likes.length}
+                    {likes.length}
                 </>
             );
         }
@@ -121,7 +129,7 @@ export default function PostDetail() {
                                             <button
                                                 className={cx('like-action')}
                                                 disabled={!user?.result}
-                                                onClick={() => dispatch(likePost(post._id))}
+                                                onClick={handleLikePost}
                                             >
                                                 <Likes />
                                             </button>
@@ -138,7 +146,8 @@ export default function PostDetail() {
                                             ></iframe>
                                         </div>
                                     </div>
-                                    <div className={cx('cmt')}>comment</div>
+                                    <Divider className={cx('divider')} />
+                                    <Comment post={post} />
                                 </div>
                             </div>
                         </div>

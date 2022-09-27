@@ -18,7 +18,7 @@ import SearchPostPage from '../pages/Post/SearchPostPage';
 //Admin pages
 import LoginAdminPage from '../pages/Login/LoginAdminPage';
 import DashboardPage from '../pages/Admin/Dashboard/DashboardPage';
-import Member from '../pages/Admin/Member/Member';
+import UsersAdmin from '../pages/Admin/UsersAdmin/UsersAdmin';
 import PostAdminPage from '../pages/Admin/PostAdmin/PostAdminPage';
 
 //Can see until don't login
@@ -40,7 +40,8 @@ const publicRoutes = [
     //Admin routes
     { path: '/admin', component: LoginAdminPage, layout: null },
     { path: '/admin/dashboard', component: DashboardPage, layout: AdminLayout },
-    { path: '/admin/members', component: Member, layout: AdminLayout },
+    { path: '/admin/admins', component: UsersAdmin, layout: AdminLayout },
+    { path: '/admin/users', component: UsersAdmin, layout: AdminLayout },
     { path: '/admin/posts', component: PostAdminPage, layout: AdminLayout },
     { path: '/admin/posts/search', component: PostAdminPage, layout: AdminLayout },
 ];

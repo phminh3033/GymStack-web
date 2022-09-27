@@ -9,7 +9,7 @@ import images from '../../assets/images';
 //component
 import Navbar from '../Navbar/Navbar';
 import NavItem from '../Navbar/NavItem';
-import { DashboardIcon, AdminIcon, MemberIcon, TrainerIcon, PostIcon, ClientIcon } from '../Icon';
+import { DashboardIcon, AdminIcon, MemberIcon, PostIcon, ClientIcon } from '../Icon';
 
 const cx = classNames.bind(styles);
 
@@ -25,9 +25,8 @@ export default function Sidebar() {
                 </header>
                 <Navbar className="dashboard">
                     <NavItem title="Dashboard" to="/admin/dashboard" icon={<DashboardIcon />} />
-                    {/* <NavItem title="Admin" icon={<AdminIcon />} /> */}
-                    <NavItem title="Người dùng" to="/admin/members" icon={<MemberIcon />} />
-                    {/* <NavItem title="Huấn luyện viên" icon={<TrainerIcon />} />  */}
+                    <NavItem title="Admin" to="/admin/admins" icon={<AdminIcon />} />
+                    <NavItem title="Người dùng" to="/admin/users" icon={<MemberIcon />} />
                     <NavItem title="Bài viết hữu ích" to="/admin/posts" icon={<PostIcon />} />
                 </Navbar>
                 <footer className={cx('footer')}>

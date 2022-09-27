@@ -6,7 +6,9 @@ import {
     FETCH_BY_SEARCH,
     CREATE_POST,
     UPDATE_POST,
+    LIKE_POST,
     DELETE_POST,
+    COMMENT_POST,
     START_LOADING,
     END_LOADING,
 } from '../../constants/actionTypes';
@@ -62,7 +64,6 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
         const {
             data: { data },
         } = await api.fetchPostsBySearch(searchQuery);
-        console.log(data);
         dispatch({ type: FETCH_BY_SEARCH, payload: data });
         dispatch({ type: END_LOADING });
     } catch (err) {
@@ -92,7 +93,6 @@ export const updatePost = (id, post) => async (dispatch) => {
 export const deletePost = (id) => async (dispatch) => {
     try {
         await api.deletePost(id);
-
         dispatch({ type: DELETE_POST, payload: id });
     } catch (err) {
         console.log({ errorDeletePostAction: err.message });
@@ -102,8 +102,19 @@ export const deletePost = (id) => async (dispatch) => {
 export const likePost = (id) => async (dispatch) => {
     try {
         const { data } = await api.likePost(id);
-        dispatch({ type: UPDATE_POST, payload: data });
+        dispatch({ type: LIKE_POST, payload: data });
     } catch (err) {
         console.log({ errorLikePostAction: err.message });
+    }
+};
+
+export const commentPost = (value, id) => async (dispatch) => {
+    try {
+        const { data } = await api.commentPost(value, id);
+        dispatch({ type: COMMENT_POST, payload: data });
+        console.log('commentPost', data.comments);
+        return data.comments;
+    } catch (err) {
+        console.log({ errorCommentPostAction: err.message });
     }
 };

@@ -10,6 +10,7 @@ const postsSchema = mongoose.Schema(
         image: { type: String },
         type: { type: String, required: true },
         likes: { type: [String], default: [] },
+        comments: { type: [Object], default: [] },
     },
     {
         timestamps: true,
