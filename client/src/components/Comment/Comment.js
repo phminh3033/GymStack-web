@@ -32,7 +32,7 @@ export default function Comment({ post }) {
             setComments(newCmt);
             setComment('');
 
-            commentsRef.current.scrollIntoView({ behavior: 'smooth' });
+            // commentsRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     };
     return (

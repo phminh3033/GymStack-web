@@ -7,6 +7,9 @@ const images = {
     slider1: require('../../assets/images/slider1.jpg'),
     aboutUs: require('../../assets/images/aboutUs.jpg'),
     parallax: require('../../assets/images/parallax.jpg'),
+    contact: require('../../assets/images/contact.jpg'),
+    privacy: require('../../assets/images/privacy.jpg'),
+    rule: require('../../assets/images/rule.jpg'),
     footer1: require('../../assets/images/footer1.png'),
 
     //Page

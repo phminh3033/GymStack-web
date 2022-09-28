@@ -28,7 +28,7 @@ export default function UserMenu({ user, handleLogOut }) {
             </div>
             <ul className={cx('menu-list')}>
                 <li className={cx('menu-item')}>
-                    <Link to="/">Trang cá nhân</Link>
+                    <Link to={`/personal/${user?.result.name}`}>Trang cá nhân</Link>
                 </li>
                 <li className={cx('menu-item')}>
                     <span onClick={handleLogOut}>Đăng xuất</span>

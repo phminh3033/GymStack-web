@@ -1,0 +1,64 @@
+@import '../../gird.module.scss';
+
+.wrapper {
+    width: 100%;
+    margin-top: var(--header-height);
+    height: 50vh;
+    margin-bottom: 60px;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+
+    .avatar {
+        font-size: 2.5rem;
+        font-weight: 600;
+        height: 100px;
+        width: 100px;
+    }
+
+    .fullName {
+        font-size: 3rem;
+        font-weight: 600;
+        margin: 20px 0 0;
+    }
+}
+
+.info {
+    padding: 0 400px;
+    .content {
+        font-size: 2rem;
+        .title {
+            margin-right: 8px;
+        }
+    }
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 40px;
+    
+    .action-btn {
+        min-width: 200px;
+        padding: 8px 24px;
+        
+        background-image: linear-gradient(171deg,var(--primary-color),var(--primary-color-admin));
+        border-radius: 18px;
+        .text-btn {
+            color: var(--white-color);
+            padding: 8px 24px;
+            font-size: 2rem;
+            font-weight: 500;
+        }
+        &:hover {
+            cursor: pointer;
+            background-image: linear-gradient(171deg,var(--primary-color), #4080ff);
+        }
+    }
+}
+

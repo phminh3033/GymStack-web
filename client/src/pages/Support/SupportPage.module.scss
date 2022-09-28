@@ -3,5 +3,54 @@
 .wrapper {
     width: 100%;
     margin-top: var(--header-height);
-    margin: 60px 0 30px;
+    margin-bottom: 60px;
+}
+
+.main-heading {
+    margin-top: 50px;
+    color: var(--primary-color);
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.sub-heading {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.divider {
+    margin: 24px auto !important;
+}
+
+.supportItem {
+    text-align: center;
+    background: linear-gradient(171deg,var(--primary-color),var(--primary-color-admin));
+    border-radius: 20px;
+    padding: 0 16px;
+    transition: all .2s ease;
+
+    .heading {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: var(--white-color);
+        padding: 28px 0 0;
+    }
+
+    .content {
+        font-size: 2rem;
+        color: var(--white-color);
+        padding: 24px 0 ;
+    }
+    .img {
+        width: 90%;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    &:hover {
+        transform: translateY(-10px);
+    }
 }

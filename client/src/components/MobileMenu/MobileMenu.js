@@ -74,7 +74,10 @@ export default function MobileMenu({ className, handleCloseMenu }) {
                         {user ? (
                             <ul className={cx('list-items')}>
                                 <li>
-                                    <NavLink className={(nav) => cx('list-item', { active: nav.isActive })} to="/">
+                                    <NavLink
+                                        className={(nav) => cx('list-item', { active: nav.isActive })}
+                                        to={`/personal/${user?.result.name}`}
+                                    >
                                         <FontAwesomeIcon className={cx('menu-icon')} icon={faUser} />
                                         <span>Trang cá nhân</span>
                                     </NavLink>
@@ -92,12 +95,15 @@ export default function MobileMenu({ className, handleCloseMenu }) {
                         )}
                         <ul className={cx('list-items')}>
                             <li>
-                                <NavLink
-                                    className={(nav) => cx('list-item', { active: nav.isActive })}
-                                    to="/trainingPack"
-                                >
+                                <NavLink className={(nav) => cx('list-item', { active: nav.isActive })} to="/introduce">
                                     <FontAwesomeIcon className={cx('menu-icon')} icon={faBox} />
-                                    <span>Gói luyện tập</span>
+                                    <span>Giới thiệu</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink className={(nav) => cx('list-item', { active: nav.isActive })} to="/posts">
+                                    <FontAwesomeIcon className={cx('menu-icon')} icon={faBookmark} />
+                                    <span>Bài viết hữu ích</span>
                                 </NavLink>
                             </li>
                             <li>
@@ -107,15 +113,9 @@ export default function MobileMenu({ className, handleCloseMenu }) {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink className={(nav) => cx('list-item', { active: nav.isActive })} to="/trainer">
+                                <NavLink className={(nav) => cx('list-item', { active: nav.isActive })} to="/support">
                                     <FontAwesomeIcon className={cx('menu-icon')} icon={faUsers} />
-                                    <span>Huấn luyện viên</span>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink className={(nav) => cx('list-item', { active: nav.isActive })} to="/posts">
-                                    <FontAwesomeIcon className={cx('menu-icon')} icon={faBookmark} />
-                                    <span>Bài viết hữu ích</span>
+                                    <span>Hỗ trợ</span>
                                 </NavLink>
                             </li>
                         </ul>

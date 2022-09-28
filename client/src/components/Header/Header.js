@@ -32,7 +32,6 @@ export default function Header({ handleOpenMenu }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    console.log(user);
 
     useEffect(() => {
         const token = user?.token;
