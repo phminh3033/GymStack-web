@@ -11,8 +11,13 @@ import { GoogleLogin } from '@react-oauth/google';
 
 import jwt_decode from 'jwt-decode';
 
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 //component
 import Input from '../../components/Auth/Input';
+// import ShowSnackbar from '../../components/Snackbar/ShowSnackbar';
 
 //Actions
 import { signInUser, signUpUser } from '../../redux/actions/authUserActions';
@@ -28,9 +33,14 @@ const initialState = {
     confirmPassword: '',
 };
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 export default function LoginPage() {
     const [showPass, setShowPass] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
+    const [open, setOpen] = React.useState(false);
     const [formDataUser, setFormDataUser] = useState(initialState);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -42,10 +52,36 @@ export default function LoginPage() {
         setShowPass((prevShowPass) => !prevShowPass);
     };
 
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    const showSnackbar = (type, message) => {
+        return (
+            <Stack spacing={2} sx={{ width: '100%' }}>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity={type} sx={{ width: '100%' }}>
+                        {message}
+                    </Alert>
+                </Snackbar>
+            </Stack>
+        );
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
         if (isSignUp) {
-            dispatch(signUpUser(formDataUser, navigate));
+            dispatch(signUpUser(formDataUser, navigate, showSnackbar));
+            handleOpen();
         } else {
             dispatch(signInUser(formDataUser, navigate));
         }
@@ -58,17 +94,19 @@ export default function LoginPage() {
     const googleSuccess = async (res) => {
         // console.log(res);
         // console.log(res.credential);
-        console.log(jwt_decode(res.credential));
+        // console.log(jwt_decode(res.credential));
         const result = jwt_decode(res?.credential);
         const token = res?.credential;
         try {
             dispatch({ type: 'AUTH_USER', data: { result, token } });
             navigate(-1);
+            showSnackbar('success', 'Bạn đã đăng nhập thành công!');
         } catch (err) {
             console.log({ error: err.message });
         }
     };
     const googleError = (err) => {
+        showSnackbar('error', 'Có vẻ tài khoản của bạn không đúng!');
         console.log(err);
         console.log('Google Sign in was unsuccessful. Please try again later!');
     };

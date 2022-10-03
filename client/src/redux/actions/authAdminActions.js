@@ -31,11 +31,8 @@ export const signUpAdmin = (formDataAdmin, navigate) => async (dispatch) => {
 
 export const getAdmins = () => async (dispatch) => {
     try {
-        dispatch({ type: START_LOADING });
         const { data } = await api.fetchAdmins();
-        console.log(data);
         dispatch({ type: FETCH_ALL_ADMINS, payload: data });
-        dispatch({ type: END_LOADING });
     } catch (err) {
         console.log({ errorGetAdminsAction: err.message });
     }

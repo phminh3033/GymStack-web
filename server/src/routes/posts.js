@@ -10,6 +10,7 @@ import {
     deletePost,
     likePost,
     commentPost,
+    deleteCmt,
 } from "../controllers/PostController.js";
 
 import authAdmin from "../middleware/authAdmin.js";
@@ -29,5 +30,6 @@ router.patch("/:id", authAdmin, updatePost);
 router.delete("/:id", authAdmin, deletePost);
 router.patch("/:id/likePost", authUser, likePost);
 router.post("/:id/commentPost", authUser, commentPost);
+router.post("/:id/deleteCmt", authUser, deleteCmt);
 
 export default router;

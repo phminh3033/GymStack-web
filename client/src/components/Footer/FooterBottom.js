@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind'; //Allows to write class names with '-' => Ex: post-item
-import styles from './Footer.module.scss'; //FontAwesome Icon
-
+import styles from './Footer.module.scss';
+import { Link } from 'react-router-dom';
+//FontAwesome Icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareFacebook, faSquareInstagram, faTiktok, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
@@ -13,9 +14,11 @@ export default function FooterBottom({ className }) {
                 <div className={cx('row')}>
                     <div className={cx('col', 'l-12', 'm-12', 'c-12')}>
                         <div className={cx('content-bottom')}>
-                            <p className={cx('copyright')}>
-                                © 2022 Gym Stack. Nền tảng rèn luyện sức khỏe hàng đầu Việt Nam
-                            </p>
+                            <Link to="/admin" target="_blank">
+                                <p className={cx('copyright')}>
+                                    © 2022 Gym Stack. Nền tảng rèn luyện sức khỏe hàng đầu Việt Nam
+                                </p>
+                            </Link>
                             <div className={cx('social-list')}>
                                 <a
                                     href="https://www.youtube.com/user/GymSharkTV"

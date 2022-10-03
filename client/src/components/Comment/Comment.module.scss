@@ -17,6 +17,11 @@
     margin-right: 20px;
 }
 
+.comment-wrap {
+    display: flex;
+    align-items: center;
+}
+
 .comment-detail {
     background-color: rgba(109, 109, 109, 0.2);
     border-radius: 8px;
@@ -24,5 +29,17 @@
 
     .comment-name {
         font-weight: 700;
+    }
+}
+
+.comment-delete {
+    margin-left: 16px;
+    padding: 1px 8px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    &:hover {
+        cursor: pointer;
+        color: var(--white-color);
+        background-color: var(--primary-color);
     }
 }

@@ -9,7 +9,7 @@ import {
     END_LOADING,
 } from '../../constants/actionTypes';
 
-const authUserReducers = (state = { authData: null }, action) => {
+export const authUserReducers = (state = { authData: null }, action) => {
     switch (action.type) {
         case AUTH_USER:
             localStorage.setItem('profileUser', JSON.stringify({ ...action?.data }));
@@ -22,7 +22,7 @@ const authUserReducers = (state = { authData: null }, action) => {
     }
 };
 
-const userReducers = (state = { isLoading: true, users: [] }, action) => {
+export const users = (state = { isLoading: true, users: [] }, action) => {
     switch (action.type) {
         case START_LOADING:
             return { ...state, isLoading: true };
@@ -41,5 +41,3 @@ const userReducers = (state = { isLoading: true, users: [] }, action) => {
             return state;
     }
 };
-
-export { authUserReducers, userReducers };

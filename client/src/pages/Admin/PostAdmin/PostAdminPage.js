@@ -3,6 +3,9 @@ import styles from './PostAdminPage.module.scss';
 import moment from 'moment';
 
 import Grow from '@mui/material/Grow';
+import Tippy from '@tippyjs/react/headless'; // different import path!
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 //react library
 import { useState, useEffect } from 'react';
@@ -158,13 +161,43 @@ export default function PostAdminPage() {
                                                     >
                                                         Sửa
                                                     </Button>
-                                                    <Button
-                                                        variant="danger"
-                                                        className={cx('table-btn')}
-                                                        onClick={() => dispatch(deletePost(post._id))}
+                                                    <Tippy
+                                                        interactive
+                                                        trigger="click"
+                                                        hideOnClick
+                                                        placement="left-start"
+                                                        render={(attrs) => (
+                                                            <div
+                                                                className={cx('deleteWarning-wrap')}
+                                                                tabIndex="-1"
+                                                                {...attrs}
+                                                            >
+                                                                <div className={cx('deleteWarning')}>
+                                                                    <FontAwesomeIcon
+                                                                        className={cx('deleteWarning-icon')}
+                                                                        icon={faTriangleExclamation}
+                                                                    />
+
+                                                                    <h2>Bạn có chắc chắn muốn xóa</h2>
+                                                                    <p>
+                                                                        Bài viết <strong>{post.title}</strong> khỏi hệ
+                                                                        thống?
+                                                                    </p>
+                                                                    <Button
+                                                                        variant="danger"
+                                                                        className={cx('table-btn')}
+                                                                        onClick={() => dispatch(deletePost(post._id))}
+                                                                    >
+                                                                        Xóa
+                                                                    </Button>
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                     >
-                                                        Xóa
-                                                    </Button>
+                                                        <Button variant="danger" className={cx('table-btn')}>
+                                                            Xóa
+                                                        </Button>
+                                                    </Tippy>
                                                 </>
                                             )}
                                         </td>

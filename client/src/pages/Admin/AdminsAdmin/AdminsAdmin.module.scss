@@ -1,0 +1,27 @@
+.wrapper {
+    min-height: calc(100vh - var(--header-height-admin));
+    padding: 24px;
+}
+
+.table-container {
+    padding: 24px;
+    margin-top: 16px;
+    background-color: var(--white-color);
+    border-radius: 8px;
+
+    .table {
+        font-size: 1.8rem;
+        margin-bottom: 0;
+
+        .table-btn-wrapper {
+            text-align: center;
+            .table-btn {
+                color: var(--white-color);
+                font-weight: 500;
+                font-size: 1.2rem;
+                padding: 4px 14px;
+                margin: 4px 6px;
+            }
+        }
+    }
+}

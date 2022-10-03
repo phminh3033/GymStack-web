@@ -9,6 +9,7 @@ import {
     LIKE_POST,
     DELETE_POST,
     COMMENT_POST,
+    DELETE_CMT,
     START_LOADING,
     END_LOADING,
 } from '../../constants/actionTypes';
@@ -95,6 +96,15 @@ export const deletePost = (id) => async (dispatch) => {
         dispatch({ type: DELETE_POST, payload: id });
     } catch (err) {
         console.log({ errorDeletePostAction: err.message });
+    }
+};
+
+export const deleteCmt = (id) => async (dispatch) => {
+    try {
+        await api.deleteCmt(id);
+        dispatch({ type: DELETE_CMT, payload: id });
+    } catch (err) {
+        console.log({ errorDeleteCmtAction: err.message });
     }
 };
 

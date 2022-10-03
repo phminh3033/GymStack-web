@@ -4,7 +4,7 @@ import styles from './Comment.module.scss';
 //React library
 import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { commentPost } from '../../redux/actions/postActions';
+import { commentPost, deleteCmt } from '../../redux/actions/postActions';
 
 //MUI library
 import { TextField } from '@mui/material';
@@ -24,6 +24,7 @@ export default function Comment({ post }) {
         if (e.keyCode === 13) {
             // const finalCmt = `${user.result.name}: ${comment}`;
             const finalCmt = {
+                idUser: user.result._id || user?.result?.sub,
                 name: user.result.name,
                 picture: user.result.picture,
                 comment: comment,
@@ -37,7 +38,7 @@ export default function Comment({ post }) {
     };
     return (
         <div>
-            {user?.result?.name ? (
+            {user?.result ? (
                 <div>
                     <TextField
                         fullWidth
@@ -64,9 +65,16 @@ export default function Comment({ post }) {
                         >
                             {comment.name.charAt(0).toUpperCase()}
                         </Avatar>
-                        <div className={cx('comment-detail')}>
-                            <div className={cx('comment-name')}>{comment.name}</div>
-                            <div className={cx('comment-content')}>{comment.comment}</div>
+                        <div className={cx('comment-wrap')}>
+                            <div className={cx('comment-detail')}>
+                                <div className={cx('comment-name')}>{comment.name}</div>
+                                <div className={cx('comment-content')}>{comment.comment}</div>
+                            </div>
+                            {(comment.id === user?.result?._id || comment.id === user?.result?.sub) && (
+                                <span className={cx('comment-delete')} onClick={() => dispatch(deleteCmt(post._id))}>
+                                    Xóa
+                                </span>
+                            )}
                         </div>
                     </div>
                 ))}

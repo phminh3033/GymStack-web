@@ -79,8 +79,7 @@ export const signUpAdmin = async (req, res) => {
 
 export const getAdmins = async (req, res) => {
     try {
-        const admins = await AdminsModel.find();
-        console.log("admins", admins);
+        const admins = await AdminsModel.find().sort({ _id: -1 });
         res.status(200).json(admins);
     } catch (err) {
         res.status(404).json({ errorGetAdminsController: err.message });

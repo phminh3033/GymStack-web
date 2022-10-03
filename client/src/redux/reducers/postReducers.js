@@ -7,6 +7,7 @@ import {
     UPDATE_POST,
     LIKE_POST,
     COMMENT_POST,
+    DELETE_CMT,
     DELETE_POST,
     START_LOADING,
     END_LOADING,
@@ -59,6 +60,8 @@ export default function postsReducers(state = { isLoading: true, posts: [] }, ac
                 }),
             };
         case DELETE_POST:
+            return { ...state, posts: state.posts.filter((post) => post._id !== action.payload) };
+        case DELETE_CMT:
             return { ...state, posts: state.posts.filter((post) => post._id !== action.payload) };
         default:
             return state;

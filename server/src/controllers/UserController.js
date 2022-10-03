@@ -1,6 +1,7 @@
 //bcrypt is used to hash the password
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 import UsersModel from "../models/UsersModel.js";
 
 export const signInUser = async (req, res) => {
@@ -92,8 +93,7 @@ export const getUser = async (req, res) => {
 
 export const getUsers = async (req, res) => {
     try {
-        const users = await UsersModel.find();
-        console.log(users);
+        const users = await UsersModel.find().sort({ _id: -1 });
         res.status(200).json(users);
     } catch (err) {
         res.status(404).json({ errorGetUsersController: err.message });

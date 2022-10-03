@@ -9,13 +9,15 @@ import {
     END_LOADING,
 } from '../../constants/actionTypes';
 
-export const signInUser = (formDataUser, navigate) => async (dispatch) => {
+export const signInUser = (formDataUser, navigate, showSnackbar) => async (dispatch) => {
     try {
         //login user
         const { data } = await api.signInUser(formDataUser);
         dispatch({ type: AUTH_USER, data });
         navigate(-1);
+        showSnackbar('success', 'Bạn đã đăng nhập thành công!');
     } catch (err) {
+        showSnackbar('error', 'Có vẻ tài khoản của bạn không đúng!');
         console.log({ errorSignInUserAction: err.message });
     }
 };
@@ -44,11 +46,8 @@ export const getUser = (id) => async (dispatch) => {
 
 export const getUsers = () => async (dispatch) => {
     try {
-        dispatch({ type: START_LOADING });
         const { data } = await api.fetchUsers();
-        console.log(data);
         dispatch({ type: FETCH_ALL_USERS, payload: data });
-        dispatch({ type: END_LOADING });
     } catch (err) {
         console.log({ errorGetUsersAction: err.message });
     }
