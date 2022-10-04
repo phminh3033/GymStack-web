@@ -37,7 +37,7 @@ export const signInUser = (formDataUser) => API.post('/user/signin', formDataUse
 export const signUpUser = (formDataUser) => API.post('/user/signup', formDataUser);
 
 export const fetchUser = (id) => API.get(`/user/${id}`);
-// export const updateUser = (id, updatedUser) => API.patch(`/user/${id}`, updatedUser);
+export const updateUser = (id, updatedUser) => API.patch(`/user/${id}`, updatedUser);
 
 //Admins
 export const signInAdmin = (formDataAdmin) => API.post('/admin/signin', formDataAdmin);

@@ -3,45 +3,80 @@
 .wrapper {
     width: 100%;
     margin-top: var(--header-height);
-    height: 50vh;
+    min-height: 70vh;
     margin-bottom: 60px;
 }
 
+.cover {
+    position: relative;
+    height: 300px;
+    background-image: url(../../assets/images/coverPersonalPage.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
 .user {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 12%);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 32px;
 
     .avatar {
+        border: 3px solid var(--white-color);
         font-size: 2.5rem;
         font-weight: 600;
-        height: 100px;
-        width: 100px;
+        height: 150px;
+        width: 150px;
     }
 
     .fullName {
-        font-size: 3rem;
-        font-weight: 600;
-        margin: 20px 0 0;
+        font-size: 4rem;
+        font-weight: 700;
+        margin: 10px 0 0;
     }
 }
 
-.info {
-    padding: 0 400px;
-    .content {
-        font-size: 2rem;
-        .title {
-            margin-right: 8px;
+.info-wrap {
+    margin: 180px 0 0;
+
+    .info {
+        padding: 20px 32px 10px 40px;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        box-shadow: 0 1px 5px rgba(0,0,0,.2);
+        .content {
+            font-size: 2.3rem;
+            letter-spacing: 2px;
+            .title {
+                margin-right: 8px;
+            }
         }
     }
+
+    .bmi-img {
+        .img {
+            width: 100%;
+            margin-bottom: 24px;
+            border-radius: 10px;
+            box-shadow: 0 1px 5px rgba(0,0,0,.2);
+        }
+    }
+    
 }
 
 .bottom {
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-top: 40px;
+    margin-bottom: 32px;
     
     .action-btn {
         min-width: 200px;

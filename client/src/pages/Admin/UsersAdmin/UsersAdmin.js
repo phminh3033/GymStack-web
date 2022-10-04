@@ -18,7 +18,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 //components
-import Search from '../../../components/Search/Search';
+// import Search from '../../../components/Search/Search';
 
 const cx = classNames.bind(styles);
 

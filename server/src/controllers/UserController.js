@@ -111,35 +111,29 @@ export const getUsersBySearch = async (req, res) => {
     }
 };
 
-// export const updateUser = async (req, res) => {
-//     const { id } = req.params;
-//     const {
-//         email,
-//         phone,
-//         password,
-//         confirmPassword,
-//         firstName,
-//         lastName,
-//         height,
-//         weight,
-//     } = req.body;
+export const updateUser = async (req, res) => {
+    const { id: _id } = req.params;
+    const user = req.body;
+    const { password, confirmPassword } = req.body;
 
-//     if (!mongoose.Types.ObjectId.isValid(id)) {
-//         return res.status(404).send("No user with that id: ", id);
-//     }
+    const update = { ...user };
 
-//     if (password !== confirmPassword) {
-//         return res.status(400).json({ message: "Password don't match!" });
-//     }
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).send("No user with that id: ", id);
+    }
 
-//     const hashedPassword = await bcrypt.hash(password, 12);
+    // if (password !== confirmPassword) {
+    //     return res.status(400).json({ message: "Password don't match!" });
+    // }
 
-//     const updatedUser = await UsersModel.findByIdAndUpdate(id, update, {
-//         new: true,
-//     });
+    // const hashedPassword = await bcrypt.hash(password, 12);
 
-//     res.json(updatedUser);
-// };
+    const updatedUser = await UsersModel.findByIdAndUpdate(_id, update, {
+        new: true,
+    });
+
+    res.json(updatedUser);
+};
 
 export const deleteUser = async (req, res) => {
     const { id } = req.params;

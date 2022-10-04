@@ -46,3 +46,14 @@
     }
 }
 
+//search
+.searchBtn {
+    height: 100%;
+}
+
+.wrapBodyPartItem {
+    transition: all .2s ease;
+    &:hover {
+        transform: scale(1.1);
+    }
+}

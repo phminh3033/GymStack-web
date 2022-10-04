@@ -7,19 +7,17 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 //Component
 import { SearchIcon } from '../../components/Icon';
-
-// import { exerciseOptions, fetchData } from '../../utils/fetchData';
+import SearchExercise from './SearchExercise';
 
 const cx = classNames.bind(styles);
 
 export default function ExercisePage() {
-    // const handleClick = async () => {
-    //     const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
-    //     console.log(exercisesData);
-    // };
+    const [exercises, setExercises] = useState([]);
+    const [bodyPart, setBodyPart] = useState('all');
     return (
         <div className={cx('wrapper')}>
             <div className={cx('grid', 'wide')}>
@@ -33,6 +31,7 @@ export default function ExercisePage() {
                                 </Link>
                             </Tippy>
                         </div>
+                        <SearchExercise setExercises={setExercises} bodyPart={bodyPart} setBodyPart={setBodyPart} />
                     </div>
                 </div>
                 <div className={cx('row')}>

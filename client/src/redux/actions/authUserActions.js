@@ -4,6 +4,7 @@ import {
     FETCH_USER,
     FETCH_ALL_USERS,
     FETCH_USERS_BY_SEARCH,
+    UPDATE_USER,
     DELETE_USER,
     START_LOADING,
     END_LOADING,
@@ -66,14 +67,14 @@ export const getUsersBySearch = (searchQuery) => async (dispatch) => {
     }
 };
 
-// export const updateUser = (id, user) => async (dispatch) => {
-//     try {
-//         const { data } = await api.updateUser(id, user);
-//         dispatch({ type: UPDATE_USER, payload: data });
-//     } catch (err) {
-//         console.log({ errorUpdateUserAction: err.message });
-//     }
-// };
+export const updateUser = (id, user) => async (dispatch) => {
+    try {
+        const { data } = await api.updateUser(id, user);
+        dispatch({ type: UPDATE_USER, payload: data });
+    } catch (err) {
+        console.log({ errorUpdateUserAction: err.message });
+    }
+};
 
 export const deleteUser = (id) => async (dispatch) => {
     try {

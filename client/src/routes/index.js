@@ -6,6 +6,7 @@ import HomePage from '../pages/Home/HomePage';
 import LoginPage from '../pages/Login/LoginPage';
 import RegisterPage from '../pages/Register/RegisterPage';
 import PersonalPage from '../pages/Personal/PersonalPage';
+import UpdatePersonalPage from '../pages/Personal/UpdatePersonalPage';
 import ExercisePage from '../pages/Exercise/ExercisePage';
 import IntroducePage from '../pages/Introduce/IntroducePage';
 import JobsPage from '../pages/Jobs/JobsPage';
@@ -35,6 +36,7 @@ const publicRoutes = [
     { path: '/login', component: LoginPage },
     { path: '/register', component: RegisterPage },
     { path: '/personal/:name', component: PersonalPage },
+    { path: '/personal/:name/update', component: UpdatePersonalPage },
     { path: '/exercise', component: ExercisePage },
     { path: '/introduce', component: IntroducePage },
     { path: '/careers', component: JobsPage },

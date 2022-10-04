@@ -4,6 +4,7 @@ import {
     FETCH_USER,
     FETCH_ALL_USERS,
     FETCH_USERS_BY_SEARCH,
+    UPDATE_USER,
     DELETE_USER,
     START_LOADING,
     END_LOADING,
@@ -35,6 +36,11 @@ export const users = (state = { isLoading: true, users: [] }, action) => {
             return { ...state, user: action.payload };
         case FETCH_USERS_BY_SEARCH:
             return { ...state, users: action.payload };
+        case UPDATE_USER:
+            return {
+                ...state,
+                users: state.users.map((user) => (user._id === action.payload._id ? action.payload : user)),
+            };
         case DELETE_USER:
             return { ...state, users: state.users.filter((user) => user._id !== action.payload) };
         default:

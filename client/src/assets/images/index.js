@@ -5,6 +5,8 @@ const images = {
     homePage3: require('../../assets/images/homePage3.jpg'),
     homePage4: require('../../assets/images/homePage4.jpg'),
     slider1: require('../../assets/images/slider1.jpg'),
+    bmi: require('../../assets/images/bmi.png'),
+    whatBmi: require('../../assets/images/whatBmi.png'),
     aboutUs: require('../../assets/images/aboutUs.jpg'),
     parallax: require('../../assets/images/parallax.jpg'),
     contact: require('../../assets/images/contact.jpg'),
