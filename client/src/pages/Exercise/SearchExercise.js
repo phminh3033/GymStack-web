@@ -39,7 +39,6 @@ export default function SearchExercise({ setExercises, bodyPart, setBodyPart }) 
                         exercise.equipment.toLowerCase().includes(search) ||
                         exercise.target.toLowerCase().includes(search),
                 );
-                console.log(exercisesData);
                 setSearch('');
                 setExercises(searchedExercises);
             }
@@ -69,13 +68,11 @@ export default function SearchExercise({ setExercises, bodyPart, setBodyPart }) 
                         placeholder="Search Exercise..."
                         type="text"
                     />
-                    <button className={cx('searchBtn')}>Search</button>
                 </Box>
                 <Box sx={{ position: 'relative', width: '100%', p: '20px' }}>
                     <HorizontalScrollbar data={bodyParts} bodyPart={bodyPart} setBodyPart={setBodyPart} />
                 </Box>
             </Stack>
-            SearchExercise
         </div>
     );
 }

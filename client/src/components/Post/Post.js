@@ -27,14 +27,22 @@ export default function Post() {
             <div className={cx('grid', 'wide')}>
                 <div className={cx('post-heading')}>
                     <h1 className={cx('heading')}>BÀI VIẾT HỮU ÍCH</h1>
-                    <a href="/posts" className={cx('more-btn')}>
+                    <Link
+                        to="/posts"
+                        className={cx('more-btn')}
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    >
                         Xem tất cả
-                    </a>
+                    </Link>
                 </div>
                 <div className={cx('row')}>
                     {posts?.map((post) => (
                         <div key={post._id} className={cx('col', 'l-3', 'm-6', 'c-12')}>
-                            <a key={post._id} href={`/posts/${post.type}/${post._id}`}>
+                            <Link
+                                key={post._id}
+                                to={`/posts/${post.type}/${post._id}`}
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            >
                                 <Card
                                     src={post.image}
                                     alt={post.title}
@@ -42,7 +50,7 @@ export default function Post() {
                                     desc={post.description}
                                     createAt={moment(post.createdAt).format('DD/MM/YYYY')}
                                 />
-                            </a>
+                            </Link>
                         </div>
                     ))}
                 </div>

@@ -133,12 +133,20 @@ export default function IntroducePage() {
                         <div className={cx('col', 'l-12', 'm-12', 'c-12')}>
                             <div className={cx('wrap-btn')}>
                                 <div className={cx('action-btn')}>
-                                    <Link to="/careers" className={cx('text-btn')}>
+                                    <Link
+                                        to="/careers"
+                                        className={cx('text-btn')}
+                                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                    >
                                         Cơ hội việc làm
                                     </Link>
                                 </div>
                                 <div className={cx('action-btn')}>
-                                    <Link to="/support" className={cx('text-btn')}>
+                                    <Link
+                                        to="/support"
+                                        className={cx('text-btn')}
+                                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                    >
                                         Hỗ trợ
                                     </Link>
                                 </div>

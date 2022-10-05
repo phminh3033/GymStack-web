@@ -34,26 +34,74 @@
     }
 }
 
-.comingSoon {
-    text-align: center;
-    margin: 40px 0 16px;
-    .comingSoon-img {
-        width: 40%;
-        margin-bottom: 24px;
-    }
-    .comingSoon-content {
-        margin-top: 16px;
-    }
-}
-
-//search
-.searchBtn {
-    height: 100%;
-}
 
 .wrapBodyPartItem {
     transition: all .2s ease;
     &:hover {
         transform: scale(1.1);
+    }
+}
+
+.arrowIcon {
+    font-size: 2rem;
+    margin: auto 16px;
+    color: var(--primary-color);
+    transition: all .2s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.itemName {
+    margin-bottom: 0;
+    text-transform: capitalize;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+//exercise
+.wrapExercises {
+    max-width: 360px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0,0,0,.2);
+    overflow: hidden;
+    transition: all .2s ease;
+
+    .bodyPart {
+        padding: 3px 12px;
+        margin-left: 14px;
+        margin-bottom: 16px;
+        text-transform: capitalize;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: var(--white-color);
+        background-color: #c2185b;
+        border-radius: 10px;
+
+        .icon {
+            margin-right: 6px;
+            font-size: 1.3rem;
+        }
+    }
+    .bodyPart.target {
+        background-color: #7b1fa2;
+    }
+
+    .bodyPart.equipment {
+        background-color: #ef6c00;
+    }
+
+    .name {
+        text-align: center;
+        text-transform: capitalize;
+        word-break: break-word;
+        font-weight: 600;
+        font-size: 2rem;
+        padding: 16px 20px;
+    }
+
+    &:hover {
+        transform: translateY(-10px);
     }
 }

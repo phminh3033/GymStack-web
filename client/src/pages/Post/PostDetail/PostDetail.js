@@ -157,7 +157,10 @@ export default function PostDetail() {
                                 <>
                                     {recommendedPosts.map((recommendedPost) => (
                                         <div key={recommendedPost._id} className={cx('col', 'l-3', 'm-6', 'c-12')}>
-                                            <Link to={`/posts/${recommendedPost.type}/${recommendedPost._id}`}>
+                                            <Link
+                                                to={`/posts/${recommendedPost.type}/${recommendedPost._id}`}
+                                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                            >
                                                 <Card
                                                     className="recommended-card"
                                                     src={recommendedPost.image}

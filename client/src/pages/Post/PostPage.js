@@ -80,7 +80,11 @@ export default function PostPage() {
                                 <LinearProgress className={cx('linearProgress')} />
                             ) : (
                                 posts?.map((post) => (
-                                    <Link key={post._id} to={`/posts/${post.type}/${post._id}`}>
+                                    <Link
+                                        key={post._id}
+                                        to={`/posts/${post.type}/${post._id}`}
+                                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                    >
                                         <Card
                                             className="horizontal-card"
                                             src={post.image}

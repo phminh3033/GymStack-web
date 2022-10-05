@@ -98,7 +98,11 @@ export default function KnowledgePost() {
                                     <LinearProgress className={cx('linearProgress')} />
                                 ) : (
                                     postFilters.map((postFilter) => (
-                                        <Link key={postFilter._id} to={`/posts/${postFilter.type}/${postFilter._id}`}>
+                                        <Link
+                                            key={postFilter._id}
+                                            to={`/posts/${postFilter.type}/${postFilter._id}`}
+                                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                        >
                                             <Card
                                                 className="horizontal-card"
                                                 src={postFilter.image}

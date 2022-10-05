@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'; //Allows to write class names with '-' => Ex: post-item
 import styles from './Footer.module.scss';
+import { Link } from 'react-router-dom';
 
 //component
 import images from '../../assets/images';
@@ -29,10 +30,20 @@ export default function Footer() {
                                 <h2 className={cx('heading')}>Về chúng tôi</h2>
                                 <ul className={cx('list')}>
                                     <li>
-                                        <a href="/introduce">Giới thiệu</a>
+                                        <Link
+                                            to="/introduce"
+                                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                        >
+                                            Giới thiệu
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/careers">Cơ hội việc làm</a>
+                                        <Link
+                                            to="/careers"
+                                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                        >
+                                            Cơ hội việc làm
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
@@ -42,13 +53,28 @@ export default function Footer() {
                                 <h2 className={cx('heading')}>HỖ TRỢ</h2>
                                 <ul className={cx('list')}>
                                     <li>
-                                        <a href="/contact-us">Liên hệ</a>
+                                        <Link
+                                            to="/contact-us"
+                                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                        >
+                                            Liên hệ
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/privacy">Bảo mật</a>
+                                        <Link
+                                            to="/privacy"
+                                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                        >
+                                            Bảo mật
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/terms">Điều khoản</a>
+                                        <Link
+                                            to="/terms"
+                                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                        >
+                                            Điều khoản
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
