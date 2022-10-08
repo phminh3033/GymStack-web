@@ -10,7 +10,18 @@ const postsSchema = mongoose.Schema(
         image: { type: String },
         type: { type: String, required: true },
         likes: { type: [String], default: [] },
-        comments: { type: [Object], default: [] },
+        comments: {
+            type: [
+                {
+                    idCmt: mongoose.ObjectId,
+                    idUser: { type: String, required: true },
+                    name: { type: String, required: true },
+                    picture: { type: String },
+                    comment: { type: String, required: true },
+                },
+            ],
+            default: [],
+        },
     },
     {
         timestamps: true,

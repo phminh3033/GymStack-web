@@ -30,6 +30,6 @@ router.patch("/:id", authAdmin, updatePost);
 router.delete("/:id", authAdmin, deletePost);
 router.patch("/:id/likePost", authUser, likePost);
 router.post("/:id/commentPost", authUser, commentPost);
-router.post("/:id/deleteCmt", authUser, deleteCmt);
+router.delete("/:id/deleteCmt/:idCmt", authUser, deleteCmt);
 
 export default router;

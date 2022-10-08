@@ -112,14 +112,15 @@ export const deletePost = async (req, res) => {
 };
 
 export const deleteCmt = async (req, res) => {
-    const { id } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).send("No post with that id: ", id);
-    }
-
-    await PostsModel.updateOne({ _id: id }, { $pull: { comments: idUser } });
-    res.json({ message: "Comment deleted successfully!" });
+    const { id, idCmt } = req.params;
+    const post = await PostsModel.findById(id);
+    post.comments = post.comments.filter(
+        (comment) => comment._id.toString() !== idCmt
+    );
+    const updatedPost = await PostsModel.findByIdAndUpdate(id, post, {
+        new: true,
+    });
+    res.json(updatedPost);
 };
 
 export const likePost = async (req, res) => {

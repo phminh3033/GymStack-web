@@ -28,6 +28,10 @@ app.use("/posts", postRoutes);
 app.use("/admin", adminRoutes);
 app.use("/user", userRoutes);
 
+app.get("/", (req, res) => {
+    res.send("APP IS RUNNING!");
+});
+
 //Connect to DB
 mongoose
     .connect(process.env.URI_CONNECT, {

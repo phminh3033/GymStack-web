@@ -53,6 +53,7 @@ export default function postsReducers(state = { isLoading: true, posts: [] }, ac
                 posts: state.posts.map((post) => {
                     //change the post that just received a comment
                     if (post._id === action.payload._id) {
+                        console.log('payload cmt', action.payload);
                         return action.payload;
                     }
                     //return all the other posts normally
@@ -62,7 +63,18 @@ export default function postsReducers(state = { isLoading: true, posts: [] }, ac
         case DELETE_POST:
             return { ...state, posts: state.posts.filter((post) => post._id !== action.payload) };
         case DELETE_CMT:
-            return { ...state, posts: state.posts.filter((post) => post._id !== action.payload) };
+            return {
+                ...state,
+                posts: state.posts.map((post) => {
+                    //change the post that just deleted a comment
+                    if (post._id === action.payload._id) {
+                        console.log('payload delete', action.payload);
+                        return action.payload;
+                    }
+                    //return all the other posts normally
+                    return post;
+                }),
+            };
         default:
             return state;
     }

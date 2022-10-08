@@ -56,15 +56,31 @@ export default function Header({ handleOpenMenu }) {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to="/" className={cx('logo')}>
+                <Link to="/" className={cx('logo')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                     <img src={images.logo} alt="GymStack logo" />
                 </Link>
 
                 <Navbar>
-                    <NavItem title="GIỚI THIỆU" to="/introduce" />
-                    <NavItem title="BÀI VIẾT HỮU ÍCH" to="/posts" />
-                    <NavItem title="BÀI TẬP" to="/exercise" />
-                    <NavItem title="HỖ TRỢ" to="/support" />
+                    <NavItem
+                        title="GIỚI THIỆU"
+                        to="/introduce"
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    />
+                    <NavItem
+                        title="BÀI VIẾT HỮU ÍCH"
+                        to="/posts"
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    />
+                    <NavItem
+                        title="BÀI TẬP"
+                        to="/exercise"
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    />
+                    <NavItem
+                        title="HỖ TRỢ"
+                        to="/support"
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    />
                 </Navbar>
 
                 {user ? (

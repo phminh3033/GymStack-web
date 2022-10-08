@@ -99,10 +99,12 @@ export const deletePost = (id) => async (dispatch) => {
     }
 };
 
-export const deleteCmt = (id) => async (dispatch) => {
+export const deleteCmt = (id, idCmt) => async (dispatch) => {
     try {
-        await api.deleteCmt(id);
-        dispatch({ type: DELETE_CMT, payload: id });
+        const { data } = await api.deleteCmt(id, idCmt);
+        dispatch({ type: DELETE_CMT, payload: data });
+        console.log('deletedCommentPost', data.comments); //post chua cac cmt
+        return data.comments;
     } catch (err) {
         console.log({ errorDeleteCmtAction: err.message });
     }
